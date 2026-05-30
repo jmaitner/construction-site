@@ -49,7 +49,7 @@ import Layout from '../layouts/Layout.astro';
         <span style="color: #D9A55C;">in West Michigan</span>
       </h1>
       <p class="text-white/80" style="font-size: 1.1rem; line-height: 1.75; margin-bottom: 2rem; max-width: 36rem; font-family: 'DM Sans', sans-serif;">
-        Custom decks and stairs for homes across Grand Rapids and West Michigan. Quality work, fair pricing, and a clear timeline from start to finish.
+        Custom decks, stairs, and fences for homes across Grand Rapids and West Michigan — plus other carpentry projects on request. Quality work, fair pricing, and a clear timeline from start to finish.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
         <a href="#quiz" class="btn-primary">Get My Instant Estimate →</a>
@@ -108,7 +108,7 @@ import Layout from '../layouts/Layout.astro';
           <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">What are you looking to build?</h3>
           <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Select all that apply.</p>
           <div style="display: flex; flex-direction: column; gap: 0.6rem;" id="opts-1">
-            {["New deck", "Replace existing deck", "Resurface existing deck", "Stairs", "Railings", "Deck repair", "Not sure yet"].map(opt => (
+            {["New deck", "Replace existing deck", "Resurface existing deck", "Stairs", "Railings", "Fence", "Deck repair", "Other project", "Not sure yet"].map(opt => (
               <div class="quiz-option multi" data-step="1" data-value={opt}>
                 <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 4px; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s; display:flex; align-items:center; justify-content:center;"></div>
                 <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
@@ -486,8 +486,8 @@ import Layout from '../layouts/Layout.astro';
           img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80"
         },
         {
-          title: "Multi-Level & Lakefront Decks",
-          desc: "Sloped lot or a lakeshore view? We design multi-level decks that follow the grade and open up the view — built for West Michigan weather.",
+          title: "Fences",
+          desc: "Privacy, picket, and custom wood fences that match your home and stand up to Michigan weather — installed clean, straight, and built to last.",
           img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80"
         }
       ].map(s => (
@@ -501,6 +501,12 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
       ))}
+    </div>
+    <div style="text-align: center; margin-top: 3rem;">
+      <p style="font-size: 0.95rem; line-height: 1.65; color: #5a5a5a; font-family: 'DM Sans', sans-serif; max-width: 38rem; margin: 0 auto 1.25rem;">
+        Working on something else? Decks, stairs, and fences are what we do most — but we take on other carpentry and outdoor building projects too. If you've got a project in mind, just ask.
+      </p>
+      <a href="#quiz" class="btn-primary">Get My Instant Estimate →</a>
     </div>
   </div>
 </section>
@@ -645,7 +651,7 @@ import Layout from '../layouts/Layout.astro';
       <div>
         <h4 style="color: white; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; font-family: 'DM Sans', sans-serif;">Services</h4>
         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem;">
-          {["Custom Decks", "Stairs & Railings", "Deck Repair & Resurfacing", "Multi-Level & Lakefront Decks"].map(s => (
+          {["Custom Decks", "Stairs & Railings", "Fences", "Deck Repair & Resurfacing"].map(s => (
             <li style="color: rgba(255,255,255,0.45); font-size: 0.875rem; font-family: 'DM Sans', sans-serif;">{s}</li>
           ))}
         </ul>

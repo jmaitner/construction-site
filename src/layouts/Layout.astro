@@ -10,7 +10,7 @@ const SITE = 'https://grandsons-construction.pages.dev';
 
 const {
   title = "Grandson's Construction — Custom Decks & Stairs | Grand Rapids, MI",
-  description = "Grand Rapids deck builder specializing in custom decks and stairs, built to last through Michigan winters. Based in Grand Rapids, serving West Michigan.",
+  description = "Grand Rapids deck builder specializing in custom decks, stairs, and fences, built to last through Michigan winters. Based in Grand Rapids, serving West Michigan.",
   // 1200×630 social share preview (branded logo card)
   image = SITE + "/og-image.png",
 } = Astro.props;
@@ -47,16 +47,18 @@ const jsonLd = {
     "Custom Decks",
     "Deck Stairs",
     "Deck Railings",
+    "Fences",
     "Deck Repair & Resurfacing",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Deck Building Services",
+    name: "Deck, Stair & Fence Building Services",
     itemListElement: [
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Deck Building" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Deck Stairs & Railings" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Fence Installation" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Deck Repair & Resurfacing" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Multi-Level & Lakefront Decks" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Carpentry & Outdoor Building Projects" } },
     ],
   },
 };
