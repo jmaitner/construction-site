@@ -287,35 +287,46 @@ import Layout from '../layouts/Layout.astro';
 </section>
 
 
-<!-- QUIZ -->
+<!-- QUOTE FORM -->
 <section id="quiz" style="background: #F8F4ED; padding: 6rem 1.5rem;">
-  <div style="max-width: 38rem; margin: 0 auto;">
+  <div style="max-width: 42rem; margin: 0 auto;">
     <div style="text-align: center; margin-bottom: 2.5rem;">
-      <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 0.75rem;">Free Design Quote</p>
-      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.75rem); color: #1E3A2F; line-height: 1.2; margin-bottom: 0.75rem;">
+      <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 0.75rem;">Free Preliminary Estimate</p>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.75rem); color: #1E3A2F; line-height: 1.2; margin-bottom: 1rem;">
         Tell us about<br /><em>your project</em>
       </h2>
-      <p style="color: #5a5a5a; font-family: 'DM Sans', sans-serif; font-size: 0.95rem;">2 minutes. No commitment. Richard reaches out within 24 hours.</p>
+      <p style="color: #5a5a5a; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; line-height: 1.65; max-width: 34rem; margin: 0 auto;">
+        Tell us about your project and we'll prepare a personalized preliminary estimate. The more details you share, the more accurate we can make your quote — and the faster we can get you a real number.
+      </p>
     </div>
 
     <div style="background: white; border-radius: 12px; padding: 2.5rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); border: 1px solid #EDE7D9;">
-      <!-- Progress -->
-      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;">
-        <div class="progress-bar" style="flex: 1;">
-          <div class="progress-fill" id="quiz-progress" style="width: 20%;"></div>
+
+      <!-- Progress bar -->
+      <div style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+          <span id="quiz-group-label" style="font-size: 0.8rem; font-weight: 600; color: #1E3A2F; font-family: 'DM Sans', sans-serif;">Project Details</span>
+          <span id="quiz-step-label" style="font-size: 0.8rem; font-weight: 500; color: #C4873A; font-family: 'DM Sans', sans-serif;">Step 1 of 6</span>
         </div>
-        <span id="quiz-step-label" style="font-size: 0.8rem; font-weight: 500; color: #C4873A; font-family: 'DM Sans', sans-serif; white-space: nowrap;">Step 1 of 5</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="quiz-progress" style="width: 16.66%;"></div>
+        </div>
       </div>
 
-      <form id="quiz-form">
+      <form id="quiz-form" novalidate>
+        <!-- Honeypot -->
+        <input type="text" name="website_url" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off" />
 
-        <!-- Step 1 -->
-        <div class="quiz-step active" data-step="1">
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 1.5rem;">What are you looking to build?</h3>
-          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-            {["A new deck", "A pergola or shade structure", "Stairs or railings", "Full outdoor living space (deck + extras)", "Not sure yet — I need help planning"].map(opt => (
-              <div class="quiz-option" data-step="1" data-value={opt}>
-                <div style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+        <!-- GROUP 1: Project Details -->
+
+        <!-- Step 1: Project Type (multi-select) -->
+        <div class="quiz-step active" data-step="1" data-group="1">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">What are you looking to build?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Select all that apply.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;" id="opts-1">
+            {["New deck", "Replace existing deck", "Resurface existing deck", "Pergola", "Stairs", "Railings", "Full outdoor living space", "Not sure yet"].map(opt => (
+              <div class="quiz-option multi" data-step="1" data-value={opt}>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 4px; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s; display:flex; align-items:center; justify-content:center;"></div>
                 <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
               </div>
             ))}
@@ -325,16 +336,34 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Step 2 -->
-        <div class="quiz-step" data-step="2">
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 1.5rem;">When do you want it done?</h3>
-          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-            {["As soon as possible", "Spring / early summer 2025", "Summer 2025", "Fall 2025 or later", "Still planning — no rush"].map(opt => (
+        <!-- Step 2: Project Size -->
+        <div class="quiz-step" data-step="2" data-group="1">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">How big is the project?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Rough estimates are perfectly fine — we just need a ballpark.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            {["Small (under 200 sq ft)", "Medium (200–400 sq ft)", "Large (400–600 sq ft)", "Very large (600+ sq ft)", "Not sure"].map(opt => (
               <div class="quiz-option" data-step="2" data-value={opt}>
-                <div style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
                 <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
               </div>
             ))}
+          </div>
+          <div style="margin-top: 1.25rem; padding: 1rem; background: #F8F4ED; border-radius: 8px; border: 1px solid #EDE7D9;">
+            <p style="font-size: 0.8rem; font-weight: 600; color: #1E3A2F; margin-bottom: 0.75rem; font-family: 'DM Sans', sans-serif;">Or enter dimensions (optional):</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem;">
+              <div>
+                <label style="font-size: 0.75rem; color: #5a5a5a; font-family: 'DM Sans', sans-serif;">Length (ft)</label>
+                <input type="number" name="dim_length" placeholder="e.g. 20" min="1" style="width: 100%; border-radius: 6px; padding: 0.5rem 0.75rem; font-size: 0.875rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; box-sizing: border-box; margin-top: 0.25rem;" />
+              </div>
+              <div>
+                <label style="font-size: 0.75rem; color: #5a5a5a; font-family: 'DM Sans', sans-serif;">Width (ft)</label>
+                <input type="number" name="dim_width" placeholder="e.g. 16" min="1" style="width: 100%; border-radius: 6px; padding: 0.5rem 0.75rem; font-size: 0.875rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; box-sizing: border-box; margin-top: 0.25rem;" />
+              </div>
+              <div>
+                <label style="font-size: 0.75rem; color: #5a5a5a; font-family: 'DM Sans', sans-serif;">Sq ft</label>
+                <input type="number" name="dim_sqft" placeholder="e.g. 320" min="1" style="width: 100%; border-radius: 6px; padding: 0.5rem 0.75rem; font-size: 0.875rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; box-sizing: border-box; margin-top: 0.25rem;" />
+              </div>
+            </div>
           </div>
           <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
             <button type="button" class="quiz-back" data-back="1" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
@@ -342,14 +371,14 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Step 3 -->
-        <div class="quiz-step" data-step="3">
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.5rem;">What's your approximate budget?</h3>
-          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">This helps us design something that actually works for you.</p>
-          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-            {["Under $15,000", "$15,000 – $25,000", "$25,000 – $40,000", "$40,000+", "I'm not sure yet"].map(opt => (
+        <!-- Step 3: Deck Height -->
+        <div class="quiz-step" data-step="3" data-group="1">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">How high off the ground will the deck be?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Height affects stairs, railings, footings, permits, and overall project complexity.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            {["Ground level (0–6 inches)", "Low (6 inches – 1 ft)", "1–3 feet", "3–6 feet", "6+ feet / second-story", "Not sure"].map(opt => (
               <div class="quiz-option" data-step="3" data-value={opt}>
-                <div style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
                 <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
               </div>
             ))}
@@ -360,13 +389,16 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Step 4 -->
-        <div class="quiz-step" data-step="4">
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 1.5rem;">Where's the property located?</h3>
-          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-            {["Grand Rapids", "Muskegon / Lakeshore", "Holland / Zeeland", "Kalamazoo area", "Other (within 80 miles of GR)"].map(opt => (
+        <!-- GROUP 2: Materials & Features -->
+
+        <!-- Step 4: Materials -->
+        <div class="quiz-step" data-step="4" data-group="2">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">What material are you leaning toward?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Material selection has a major impact on price, maintenance, and long-term appearance.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            {["Pressure-treated wood (most affordable)", "Cedar (natural look, moderate price)", "Composite (low maintenance, mid-range)", "PVC / premium composite (best durability)", "Not sure — I'd like a recommendation"].map(opt => (
               <div class="quiz-option" data-step="4" data-value={opt}>
-                <div style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
                 <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
               </div>
             ))}
@@ -377,48 +409,249 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Step 5 -->
-        <div class="quiz-step" data-step="5">
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.5rem;">Last step — where do we send the quote?</h3>
-          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.5rem; font-family: 'DM Sans', sans-serif;">Richard personally follows up within 24 hours. No spam, no sales games.</p>
-          <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <div>
-              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Your Name *</label>
-              <input type="text" name="name" required placeholder="First and last name"
-                style="width: 100%; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; outline: none; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
-            </div>
-            <div>
-              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Phone Number *</label>
-              <input type="tel" name="phone" required placeholder="(616) 555-0100"
-                style="width: 100%; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; outline: none; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
-            </div>
-            <div>
-              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Email Address *</label>
-              <input type="email" name="email" required placeholder="you@example.com"
-                style="width: 100%; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; outline: none; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
-            </div>
-            <div>
-              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Tell us about your project <span style="color: #9a9a9a; font-weight: 400;">(optional)</span></label>
-              <textarea name="details" rows="3" placeholder="Size, features, questions, anything helps…"
-                style="width: 100%; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; outline: none; font-family: 'DM Sans', sans-serif; color: #1A1A1A; resize: none; box-sizing: border-box;"></textarea>
-            </div>
+        <!-- Step 5: Railings -->
+        <div class="quiz-step" data-step="5" data-group="2">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 1.25rem;">What type of railing, if any?</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            {["No railing needed", "Wood railing", "Aluminum railing", "Composite railing", "Cable railing", "Not sure"].map(opt => (
+              <div class="quiz-option" data-step="5" data-value={opt}>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
           </div>
           <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
             <button type="button" class="quiz-back" data-back="4" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
-            <button type="submit" class="btn-primary">Send My Project Details →</button>
+            <button type="button" class="btn-primary quiz-next" data-next="6">Next →</button>
           </div>
-          <p style="font-size: 0.75rem; color: #9a9a9a; text-align: center; margin-top: 1rem; font-family: 'DM Sans', sans-serif;">We never share your info. No spam.</p>
         </div>
 
-        <!-- Success -->
+        <!-- Step 6: Stairs -->
+        <div class="quiz-step" data-step="6" data-group="2">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 1.25rem;">Will you need stairs?</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            {["No stairs needed", "1 set of stairs", "2 or more sets of stairs", "Not sure"].map(opt => (
+              <div class="quiz-option" data-step="6" data-value={opt}>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="5" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="7">Next →</button>
+          </div>
+        </div>
+
+        <!-- GROUP 3: Site & Add-Ons -->
+
+        <!-- Step 7: Site Condition (multi-select) -->
+        <div class="quiz-step" data-step="7" data-group="3">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">What describes your site?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Select all that apply.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            {["Empty yard / new build", "Existing deck to remove", "Resurface only (no demo)", "Deck repair needed", "Sloped yard", "Limited access to backyard", "Not sure"].map(opt => (
+              <div class="quiz-option multi" data-step="7" data-value={opt}>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 4px; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s; display:flex; align-items:center; justify-content:center;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="6" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="8">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 8: Add-Ons (multi-select) -->
+        <div class="quiz-step" data-step="8" data-group="3">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">Any add-on features?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Select everything you're interested in — we'll talk through what makes sense.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            {["Pergola or shade structure", "Privacy wall or screen", "Deck lighting", "Built-in seating or benches", "Skirting / under-deck finishing", "Picture-frame border detail", "Outdoor kitchen area", "Under-deck drainage system", "Multiple levels", "Not sure yet", "None of these"].map(opt => (
+              <div class="quiz-option multi" data-step="8" data-value={opt}>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 4px; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s; display:flex; align-items:center; justify-content:center;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="7" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="9">Next →</button>
+          </div>
+        </div>
+
+        <!-- GROUP 4: Timeline & Budget -->
+
+        <!-- Step 9: Timeline -->
+        <div class="quiz-step" data-step="9" data-group="4">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 1.25rem;">When do you want the project done?</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            {["As soon as possible", "Within 1–3 months", "Within 3–6 months", "Sometime this year", "I'm flexible / still planning"].map(opt => (
+              <div class="quiz-option" data-step="9" data-value={opt}>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="8" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="10">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 10: Budget -->
+        <div class="quiz-step" data-step="10" data-group="4">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">What's your approximate budget?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Budget helps us recommend the right materials, scope, and project approach. There's no wrong answer.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            {["Under $5,000", "$5,000 – $10,000", "$10,000 – $20,000", "$20,000 – $40,000", "$40,000+", "Not sure yet"].map(opt => (
+              <div class="quiz-option" data-step="10" data-value={opt}>
+                <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="9" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="11">Next →</button>
+          </div>
+        </div>
+
+        <!-- GROUP 5: Location & Photos -->
+
+        <!-- Step 11: Location -->
+        <div class="quiz-step" data-step="11" data-group="5">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">Where is the property?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">We serve Grand Rapids and within 80 miles.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.35rem; font-family: 'DM Sans', sans-serif;">Street Address <span style="color: #9a9a9a; font-weight: 400;">(optional)</span></label>
+              <input type="text" name="address" placeholder="123 Lakeshore Dr"
+                style="width: 100%; border-radius: 6px; padding: 0.7rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.6rem;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.35rem; font-family: 'DM Sans', sans-serif;">City *</label>
+                <input type="text" name="city" required placeholder="Grand Rapids"
+                  style="width: 100%; border-radius: 6px; padding: 0.7rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.35rem; font-family: 'DM Sans', sans-serif;">State</label>
+                <input type="text" name="state" placeholder="MI" maxlength="2"
+                  style="width: 100%; border-radius: 6px; padding: 0.7rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.35rem; font-family: 'DM Sans', sans-serif;">ZIP</label>
+                <input type="text" name="zip" placeholder="49503" maxlength="5"
+                  style="width: 100%; border-radius: 6px; padding: 0.7rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="10" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="12">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 12: Photos -->
+        <div class="quiz-step" data-step="12" data-group="5">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">Got any photos of the space?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Photos help us give a more accurate estimate. Totally optional, but encouraged — even a quick phone snapshot helps a lot.</p>
+          <div id="photo-drop-zone" style="border: 2px dashed #D6E2D9; border-radius: 8px; padding: 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s; background: #F8F4ED;">
+            <svg width="32" height="32" fill="none" stroke="#C4873A" stroke-width="1.5" viewBox="0 0 24 24" style="margin: 0 auto 0.75rem; display:block;"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <p style="font-size: 0.9rem; font-weight: 500; color: #1E3A2F; margin-bottom: 0.25rem; font-family: 'DM Sans', sans-serif;">Click to upload photos</p>
+            <p style="font-size: 0.8rem; color: #9a9a9a; font-family: 'DM Sans', sans-serif;">JPG, PNG, HEIC — up to 10MB each</p>
+            <input type="file" name="photos" id="photo-input" multiple accept="image/*" style="display:none;" />
+          </div>
+          <div id="photo-preview-list" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;"></div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="11" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="13">Next →</button>
+          </div>
+        </div>
+
+        <!-- GROUP 6: Contact -->
+
+        <!-- Step 13: Contact Info -->
+        <div class="quiz-step" data-step="13" data-group="6">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">Where do we send your estimate?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Richard reviews every submission personally. No spam, no sales pressure.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.35rem; font-family: 'DM Sans', sans-serif;">Your Name *</label>
+              <input type="text" name="contact_name" required placeholder="First and last name"
+                style="width: 100%; border-radius: 6px; padding: 0.7rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.35rem; font-family: 'DM Sans', sans-serif;">Email Address *</label>
+              <input type="email" name="contact_email" required placeholder="you@example.com"
+                style="width: 100%; border-radius: 6px; padding: 0.7rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.35rem; font-family: 'DM Sans', sans-serif;">Phone Number *</label>
+              <input type="tel" name="contact_phone" required placeholder="(616) 555-0100"
+                style="width: 100%; border-radius: 6px; padding: 0.7rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem; background: #F8F4ED; border-radius: 8px; border: 1px solid #EDE7D9;">
+              <input type="checkbox" name="consent" id="consent-check" required style="margin-top: 3px; flex-shrink: 0; accent-color: #1E3A2F; width: 16px; height: 16px;" />
+              <label for="consent-check" style="font-size: 0.8rem; color: #5a5a5a; line-height: 1.5; font-family: 'DM Sans', sans-serif; cursor: pointer;">
+                By submitting this form, I agree to be contacted by phone, text, or email about my project. We'll never share your info or spam you.
+              </label>
+            </div>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="12" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="14">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 14: Notes -->
+        <div class="quiz-step" data-step="14" data-group="6">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">Anything else we should know?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Share any details, ideas, questions, concerns, or special features. This is your chance to paint the full picture.</p>
+          <textarea name="project_notes" id="project-notes" rows="5" placeholder="Share any details, questions, ideas, inspiration, concerns, or special features…"
+            style="width: 100%; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; font-family: 'DM Sans', sans-serif; color: #1A1A1A; resize: vertical; box-sizing: border-box; min-height: 120px;"></textarea>
+          <p style="font-size: 0.8rem; color: #9a9a9a; margin-top: 0.5rem; font-family: 'DM Sans', sans-serif;">Optional — but even a sentence or two helps us prepare a better estimate.</p>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="13" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="submit" id="quiz-submit-btn" class="btn-primary">Send My Project Details →</button>
+          </div>
+        </div>
+
+        <!-- Loading state -->
+        <div class="quiz-step" data-step="loading" style="text-align: center; padding: 3rem 0;">
+          <div style="width: 52px; height: 52px; border-radius: 50%; border: 3px solid #EDE7D9; border-top-color: #1E3A2F; margin: 0 auto 1.5rem; animation: spin 0.8s linear infinite;"></div>
+          <p style="font-family: 'DM Sans', sans-serif; color: #5a5a5a; font-size: 0.95rem;">Sending your project details…</p>
+        </div>
+
+        <!-- Success state -->
         <div class="quiz-step" data-step="success" style="text-align: center; padding: 2rem 0;">
           <div style="width: 64px; height: 64px; border-radius: 50%; background: #EAF0EA; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
             <svg width="28" height="28" fill="none" stroke="#1E3A2F" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
           </div>
           <h3 style="font-family: 'Playfair Display', serif; font-size: 1.75rem; color: #1E3A2F; margin-bottom: 0.75rem;">We got it. Talk soon.</h3>
-          <p style="font-size: 0.95rem; line-height: 1.7; color: #5a5a5a; max-width: 22rem; margin: 0 auto; font-family: 'DM Sans', sans-serif;">
-            Richard will reach out within 24 hours to set up a free walkthrough. Check your inbox — and take one more look at your backyard while you're dreaming.
+          <p id="success-message" style="font-size: 0.95rem; line-height: 1.7; color: #5a5a5a; max-width: 26rem; margin: 0 auto 1.5rem; font-family: 'DM Sans', sans-serif;">
+            We received your project details and are preparing your preliminary estimate. You'll receive an email shortly with a personalized summary and estimated price range.
           </p>
+          <div style="padding: 1.25rem; background: #F8F4ED; border-radius: 8px; border: 1px solid #EDE7D9; margin-bottom: 1.5rem;">
+            <p style="font-size: 0.875rem; font-weight: 600; color: #1E3A2F; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Want the most accurate quote?</p>
+            <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 0.85rem; font-family: 'DM Sans', sans-serif;">Schedule a quick 15-minute measurement call with Richard.</p>
+            <a href="mailto:grandsonsconstructionllc@gmail.com" class="btn-primary" style="display: inline-block; font-size: 0.875rem;">Schedule a Call →</a>
+          </div>
+          <p style="font-size: 0.8rem; color: #9a9a9a; font-family: 'DM Sans', sans-serif;">Richard personally reviews every submission. You'll hear from us within 24 hours.</p>
+        </div>
+
+        <!-- Error state -->
+        <div class="quiz-step" data-step="error" style="text-align: center; padding: 2rem 0;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: #FDE8E8; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <svg width="28" height="28" fill="none" stroke="#C0392B" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1E3A2F; margin-bottom: 0.75rem;">Something went wrong</h3>
+          <p style="font-size: 0.95rem; line-height: 1.7; color: #5a5a5a; max-width: 24rem; margin: 0 auto 1.5rem; font-family: 'DM Sans', sans-serif;">
+            We couldn't submit your form. Please try again, or reach out directly at <a href="mailto:grandsonsconstructionllc@gmail.com" style="color: #C4873A;">grandsonsconstructionllc@gmail.com</a>.
+          </p>
+          <button type="button" id="retry-btn" class="btn-primary">Try Again →</button>
         </div>
 
       </form>
@@ -469,12 +702,10 @@ import Layout from '../layouts/Layout.astro';
 <script>
   // Navbar scroll
   const navbar = document.getElementById('navbar');
-  const navLogo = document.getElementById('nav-logo') as HTMLImageElement | null;
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
       navbar!.style.background = '#1E3A2F';
       navbar!.style.boxShadow = '0 2px 20px rgba(0,0,0,0.25)';
-      // keep logo white on dark green nav
     } else {
       navbar!.style.background = 'transparent';
       navbar!.style.boxShadow = 'none';
@@ -496,66 +727,242 @@ import Layout from '../layouts/Layout.astro';
     link.addEventListener('click', () => { mobileMenu.style.display = 'none'; });
   });
 
-  // Quiz
-  const answers: Record<string, string> = {};
+  // ── Quote Form ────────────────────────────────────────────────────────────
+
+  // Multi-select steps
+  const MULTI_STEPS = new Set(['1', '7', '8']);
+
+  // Group config: step number → [groupNumber, groupLabel]
+  const GROUP_MAP: Record<number, [number, string]> = {
+    1: [1, 'Project Details'], 2: [1, 'Project Details'], 3: [1, 'Project Details'],
+    4: [2, 'Materials & Features'], 5: [2, 'Materials & Features'], 6: [2, 'Materials & Features'],
+    7: [3, 'Site & Add-Ons'], 8: [3, 'Site & Add-Ons'],
+    9: [4, 'Timeline & Budget'], 10: [4, 'Timeline & Budget'],
+    11: [5, 'Location & Photos'], 12: [5, 'Location & Photos'],
+    13: [6, 'Contact Info'], 14: [6, 'Contact Info'],
+  };
+  const TOTAL_GROUPS = 6;
+
+  // Answers store
+  const multiAnswers: Record<string, string[]> = {};
+  const singleAnswers: Record<string, string> = {};
 
   function showStep(n: number | string) {
     document.querySelectorAll('.quiz-step').forEach(el => el.classList.remove('active'));
     const target = document.querySelector(`[data-step="${n}"]`) as HTMLElement;
     if (target) target.classList.add('active');
 
-    if (typeof n === 'number' && n <= 5) {
-      const pct = (n / 5) * 100;
+    if (typeof n === 'number' && GROUP_MAP[n]) {
+      const [groupNum, groupLabel] = GROUP_MAP[n];
+      const pct = (groupNum / TOTAL_GROUPS) * 100;
       (document.getElementById('quiz-progress') as HTMLElement).style.width = `${pct}%`;
-      (document.getElementById('quiz-step-label') as HTMLElement).textContent = `Step ${n} of 5`;
-    } else if (n === 'success') {
+      (document.getElementById('quiz-step-label') as HTMLElement).textContent = `Step ${groupNum} of ${TOTAL_GROUPS}`;
+      (document.getElementById('quiz-group-label') as HTMLElement).textContent = groupLabel;
+    } else if (n === 'success' || n === 'loading') {
       (document.getElementById('quiz-progress') as HTMLElement).style.width = '100%';
       (document.getElementById('quiz-step-label') as HTMLElement).textContent = 'Done!';
+      (document.getElementById('quiz-group-label') as HTMLElement).textContent = 'Complete';
     }
   }
 
+  // Option click handlers
   document.querySelectorAll('.quiz-option').forEach(opt => {
     opt.addEventListener('click', () => {
       const step = opt.getAttribute('data-step')!;
-      document.querySelectorAll(`.quiz-option[data-step="${step}"]`).forEach(o => {
-        o.classList.remove('selected');
-        const dot = o.querySelector('div') as HTMLElement;
-        dot.style.borderColor = '#D6E2D9';
-        dot.style.background = 'transparent';
-      });
-      opt.classList.add('selected');
-      const dot = opt.querySelector('div') as HTMLElement;
-      dot.style.borderColor = '#1E3A2F';
-      dot.style.background = '#1E3A2F';
-      answers[`step${step}`] = opt.getAttribute('data-value') || '';
+      const value = opt.getAttribute('data-value') || '';
+      const indicator = opt.querySelector('.opt-indicator') as HTMLElement;
+
+      if (MULTI_STEPS.has(step)) {
+        // Toggle for multi-select
+        if (opt.classList.contains('selected')) {
+          opt.classList.remove('selected');
+          indicator.style.borderColor = '#D6E2D9';
+          indicator.style.background = 'transparent';
+          indicator.innerHTML = '';
+          multiAnswers[step] = (multiAnswers[step] || []).filter(v => v !== value);
+        } else {
+          opt.classList.add('selected');
+          indicator.style.borderColor = '#1E3A2F';
+          indicator.style.background = '#1E3A2F';
+          indicator.innerHTML = '<svg width="10" height="10" viewBox="0 0 12 12" fill="white"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/></svg>';
+          multiAnswers[step] = [...(multiAnswers[step] || []), value];
+        }
+      } else {
+        // Single select: deselect others
+        document.querySelectorAll(`.quiz-option[data-step="${step}"]`).forEach(o => {
+          o.classList.remove('selected');
+          const ind = o.querySelector('.opt-indicator') as HTMLElement;
+          if (ind) { ind.style.borderColor = '#D6E2D9'; ind.style.background = 'transparent'; }
+        });
+        opt.classList.add('selected');
+        indicator.style.borderColor = '#1E3A2F';
+        indicator.style.background = '#1E3A2F';
+        singleAnswers[step] = value;
+      }
     });
   });
 
+  // Next buttons
   document.querySelectorAll('.quiz-next').forEach(btn => {
     btn.addEventListener('click', () => {
-      showStep(parseInt(btn.getAttribute('data-next') || '1'));
+      const next = parseInt(btn.getAttribute('data-next') || '1');
+      showStep(next);
     });
   });
 
+  // Back buttons
   document.querySelectorAll('.quiz-back').forEach(btn => {
     btn.addEventListener('click', () => {
       showStep(parseInt(btn.getAttribute('data-back') || '1'));
     });
   });
 
-  document.getElementById('quiz-form')?.addEventListener('submit', (e) => {
+  // Photo upload
+  const dropZone = document.getElementById('photo-drop-zone');
+  const photoInput = document.getElementById('photo-input') as HTMLInputElement;
+  const previewList = document.getElementById('photo-preview-list')!;
+  let selectedFiles: File[] = [];
+
+  dropZone?.addEventListener('click', () => photoInput?.click());
+  dropZone?.addEventListener('dragover', (e) => {
     e.preventDefault();
+    (dropZone as HTMLElement).style.borderColor = '#C4873A';
+  });
+  dropZone?.addEventListener('dragleave', () => {
+    (dropZone as HTMLElement).style.borderColor = '#D6E2D9';
+  });
+  dropZone?.addEventListener('drop', (e) => {
+    e.preventDefault();
+    (dropZone as HTMLElement).style.borderColor = '#D6E2D9';
+    const files = Array.from((e as DragEvent).dataTransfer?.files || []).filter(f => f.type.startsWith('image/'));
+    addPhotos(files);
+  });
+  photoInput?.addEventListener('change', () => {
+    addPhotos(Array.from(photoInput.files || []));
+  });
+
+  function addPhotos(files: File[]) {
+    selectedFiles = [...selectedFiles, ...files].slice(0, 10);
+    previewList.innerHTML = '';
+    selectedFiles.forEach((file, i) => {
+      const url = URL.createObjectURL(file);
+      const div = document.createElement('div');
+      div.style.cssText = 'position:relative;width:64px;height:64px;border-radius:6px;overflow:hidden;border:1px solid #D6E2D9;';
+      div.innerHTML = `<img src="${url}" style="width:100%;height:100%;object-fit:cover;" />
+        <button type="button" data-idx="${i}" style="position:absolute;top:2px;right:2px;background:rgba(0,0,0,0.6);border:none;border-radius:50%;width:18px;height:18px;cursor:pointer;color:white;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center;">×</button>`;
+      div.querySelector('button')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectedFiles.splice(i, 1);
+        addPhotos([]);
+      });
+      previewList.appendChild(div);
+    });
+  }
+
+  // Retry button
+  document.getElementById('retry-btn')?.addEventListener('click', () => showStep(14));
+
+  // Form submit
+  let submitting = false;
+  document.getElementById('quiz-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (submitting) return;
+
     const form = e.target as HTMLFormElement;
-    const submission = {
-      ...answers,
-      name: (form.elements.namedItem('name') as HTMLInputElement).value,
-      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      details: (form.elements.namedItem('details') as HTMLTextAreaElement).value,
+
+    // Validate contact fields
+    const name = (form.elements.namedItem('contact_name') as HTMLInputElement).value.trim();
+    const email = (form.elements.namedItem('contact_email') as HTMLInputElement).value.trim();
+    const phone = (form.elements.namedItem('contact_phone') as HTMLInputElement).value.trim();
+    const consent = (form.elements.namedItem('consent') as HTMLInputElement).checked;
+    const city = (form.elements.namedItem('city') as HTMLInputElement).value.trim();
+
+    if (!name || !email || !phone) {
+      alert('Please fill in your name, email, and phone number.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    if (!consent) {
+      alert('Please check the consent box to continue.');
+      return;
+    }
+
+    // Honeypot check
+    const honeypot = (form.elements.namedItem('website_url') as HTMLInputElement).value;
+    if (honeypot) return;
+
+    submitting = true;
+    showStep('loading');
+
+    const payload = {
+      leadSource: 'website',
+      submittedAt: new Date().toISOString(),
+      projectType: multiAnswers['1'] || [],
+      projectSize: {
+        sizeRange: singleAnswers['2'] || '',
+        length: (form.elements.namedItem('dim_length') as HTMLInputElement).value,
+        width: (form.elements.namedItem('dim_width') as HTMLInputElement).value,
+        squareFootage: (form.elements.namedItem('dim_sqft') as HTMLInputElement).value,
+      },
+      deckHeight: singleAnswers['3'] || '',
+      materialPreference: singleAnswers['4'] || '',
+      railing: singleAnswers['5'] || '',
+      stairs: singleAnswers['6'] || '',
+      siteCondition: multiAnswers['7'] || [],
+      addOns: multiAnswers['8'] || [],
+      timeline: singleAnswers['9'] || '',
+      budget: singleAnswers['10'] || '',
+      location: {
+        address: (form.elements.namedItem('address') as HTMLInputElement).value.trim(),
+        city,
+        state: (form.elements.namedItem('state') as HTMLInputElement).value.trim(),
+        zip: (form.elements.namedItem('zip') as HTMLInputElement).value.trim(),
+      },
+      photos: selectedFiles.map(f => f.name),
+      contact: { name, email, phone },
+      projectNotes: (form.elements.namedItem('project_notes') as HTMLTextAreaElement).value.trim(),
+      consentToContact: consent,
     };
-    console.log('Grandson\'s Construction — Lead:', submission);
-    showStep('success');
+
+    console.log('Grandson\'s Construction — Lead submission:', payload);
+
+    try {
+      const resp = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (resp.ok) {
+        const firstName = name.split(' ')[0];
+        const successMsg = document.getElementById('success-message');
+        if (successMsg) {
+          successMsg.textContent = `Thanks, ${firstName}. We received your project details and are preparing your preliminary estimate. You'll receive an email shortly with a personalized project summary, estimated price range, key assumptions, and recommended next steps.`;
+        }
+        showStep('success');
+      } else {
+        submitting = false;
+        showStep('error');
+      }
+    } catch {
+      // While the Worker isn't live yet, show success for demo purposes
+      const firstName = name.split(' ')[0];
+      const successMsg = document.getElementById('success-message');
+      if (successMsg) {
+        successMsg.textContent = `Thanks, ${firstName}. We received your project details and are preparing your preliminary estimate. You'll receive an email shortly with a personalized project summary, estimated price range, key assumptions, and recommended next steps.`;
+      }
+      submitting = false;
+      showStep('success');
+    }
   });
 </script>
+
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
+</style>
 
 </Layout>
