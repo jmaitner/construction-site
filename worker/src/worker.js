@@ -63,23 +63,41 @@ async function generateQuote(context, env) {
     body: JSON.stringify({
       model: 'claude-opus-4-7',
       max_tokens: 4000,
-      system: `You are a quoting assistant for Grandson's Construction, a premium deck and outdoor living contractor in West Michigan. Analyze project intake forms and produce structured preliminary estimates.
+      system: `You are a quoting assistant for Grandson's Construction, a premium deck, fence, and outdoor living contractor in West Michigan (Grand Rapids + ~80 mi). Analyze project intake forms and produce structured preliminary estimates.
 
-Pricing guidelines:
-- Pressure-treated deck: $15–25/sq ft installed
-- Cedar deck: $22–35/sq ft
-- Composite (Trex etc): $30–50/sq ft
-- PVC/premium composite: $45–70/sq ft
-- Height surcharges: 1-3 ft +10%, 3-6 ft +25%, 6+ ft/second-story +40-60%
-- Wood railing: $40-60/linear ft. Aluminum: $60-90. Cable: $90-130
-- Stairs per set: $800–2,500 depending on height and material
-- Pergola: $5,000–20,000 depending on size
-- Demo/removal of old deck: $500–2,000
-- Sloped yard or limited access: +10-20%
-- Lighting package: $500–2,000
-- Under-deck drainage: $2,000–5,000
+These figures are Grandson's calibrated pricing — already include standard pressure-treated substructure, hidden fasteners, and install labor for a simple ground-level rectangle. They are RANGES on purpose: a preliminary quote is a starting range, not a firm bid. The firm number always happens at the in-person site visit, so lean toward the wider/safer end when inputs are vague.
 
-Return ONLY valid JSON, no markdown fences.`,
+DECK pricing (installed $/sq ft):
+- Pressure-treated wood deck: $18–30/sq ft
+- Cedar deck: $26–42/sq ft
+- Composite — good/better (TimberTech EDGE/PRO, Trex Enhance/Select, Deckorators Vista/Trailhead): $48–90/sq ft
+- PVC / premium composite — best (AZEK Vintage/Landmark, Trex Transcend/Signature, Deckorators Voyage): $90–132/sq ft
+- If material is "not sure," assume good/better composite and say so in assumptions.
+
+FENCE pricing (installed $/linear ft):
+- Wood privacy, 6 ft (cedar/PT): $42–72/LF
+- Wood, 4 ft / picket: $30–54/LF
+- Vinyl privacy, 6 ft: $48–84/LF
+- Aluminum / ornamental: $48–96/LF
+- Single walk gate: $300–720 each. Double/drive gate: $720–1,800 each.
+(Fences are priced by linear foot + height, NOT square foot. If they only gave sq ft for a fence, ask for linear footage in missingInformation and widen the range.)
+
+MODIFIERS (apply on top of the base):
+- Height surcharge: 1–3 ft +15%, 3–6 ft +25%, 6+ ft / second-story +40–60%
+- Railing: wood $48–72/LF, composite $36–84/LF, aluminum $48–96/LF, cable $96–276/LF
+- Stairs: $240–480 per step (a typical set runs $800–2,500)
+- Demo / removal of old deck: $6–18/sq ft (≈$600–2,400 total)
+- Permit: $270–600. Frost footings (W. MI ~42" depth): $600–2,400.
+- Multi-level: +$1,800–3,600 per level. Curves / heavy angles: +15–40%.
+- Sloped yard or limited access: +10–20%
+- Lighting package: $600–2,400. Under-deck drainage: $2,400–6,000.
+
+FINISH LEVEL (craftsmanship — this rides on LABOR, same materials):
+- Standard finish = boards flat, fascia run to the edge, butted corners, straight stair treads. Use the base pricing above.
+- Premium finish = wrapped/vertical fascia that hides exposed board edges, picture-frame borders, mitered corners, mitered stair-tread detailing. This is significant extra labor on identical materials. Add +15% to the total. Treat it as Premium finish if the "Picture-frame border detail" add-on is selected, OR the customer's notes describe wrapped edges, mitered details, "no exposed edges," or an especially high-end/finished look.
+- Fully custom = the customer wants intricate, "make-it-perfect" detailing beyond the above (or signals cost is no object for the look). When you detect this: set manualReviewRequired=true, WIDEN the estimate range, lower quoteConfidence, and in customerFriendlySummary emphasize that custom detail work like this is priced precisely at the in-person visit. Do NOT try to pin a tight number on custom work.
+
+Always anchor the customer toward booking the free on-site visit for an exact quote. Return ONLY valid JSON, no markdown fences.`,
       messages: [{
         role: 'user',
         content: `Generate a preliminary quote for this project:\n\n${context}\n\nReturn this exact JSON schema:
