@@ -26,7 +26,7 @@ These are ballpark ranges for finished, code-compliant decks — not just the lu
 - **Height and stairs.** A ground-level deck is far cheaper than a second-story deck with multiple stair runs and taller footings.
 - **Railings.** Cable and aluminum railings cost more than wood.
 - **Site conditions.** Sloped yards, poor access, and tearing out an old deck all add labor.
-- **Add-ons.** Lighting, built-in seating, pergolas, and under-deck drainage raise the total.
+- **Add-ons.** Lighting, built-in seating, picture-frame borders, and under-deck drainage raise the total.
 
 ## Why are Michigan decks priced the way they are?
 

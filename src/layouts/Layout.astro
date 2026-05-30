@@ -9,10 +9,10 @@ export interface Props {
 const SITE = 'https://grandsons-construction.pages.dev';
 
 const {
-  title = "Grandson's Construction — Premium Decks & Outdoor Living | West Michigan",
-  description = "West Michigan's premier deck builder. Custom decks, pergolas, stairs & outdoor living spaces built to last a lifetime. Serving Grand Rapids and within 80 miles.",
-  // 1200×630 social share preview
-  image = "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&h=630&fit=crop&q=80",
+  title = "Grandson's Construction — Custom Decks & Stairs | Grand Rapids, MI",
+  description = "Grand Rapids deck builder specializing in custom decks and stairs, built to last through Michigan winters. Based in Grand Rapids, serving West Michigan.",
+  // 1200×630 social share preview (branded logo card)
+  image = SITE + "/og-image.png",
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE).href;
@@ -45,18 +45,18 @@ const jsonLd = {
   },
   knowsAbout: [
     "Custom Decks",
-    "Stairs & Railings",
-    "Pergolas & Shade Structures",
-    "Outdoor Living Spaces",
+    "Deck Stairs",
+    "Deck Railings",
+    "Deck Repair & Resurfacing",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Outdoor Construction Services",
+    name: "Deck Building Services",
     itemListElement: [
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Deck Building" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Stairs & Railings" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Pergolas & Shade Structures" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Outdoor Living Spaces" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Deck Stairs & Railings" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Deck Repair & Resurfacing" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Multi-Level & Lakefront Decks" } },
     ],
   },
 };
@@ -92,7 +92,7 @@ const jsonLd = {
     <meta property="og:image" content={image} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Custom West Michigan deck and outdoor living space by Grandson's Construction" />
+    <meta property="og:image:alt" content="Grandson's Construction — custom decks & stairs in Grand Rapids, Michigan" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter / X card -->

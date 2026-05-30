@@ -44,19 +44,19 @@ import Layout from '../layouts/Layout.astro';
     <div style="max-width: 42rem;">
       <p style="color: #D9A55C; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem;">West Michigan Deck Builder</p>
       <h1 class="text-white" style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem;">
-        Custom Decks &amp;<br />
-        Outdoor Living<br />
+        Custom Decks<br />
+        &amp; Stairs<br />
         <span style="color: #D9A55C;">in West Michigan</span>
       </h1>
       <p class="text-white/80" style="font-size: 1.1rem; line-height: 1.75; margin-bottom: 2rem; max-width: 36rem; font-family: 'DM Sans', sans-serif;">
-        Custom decks, pergolas, and outdoor living spaces for homes across Grand Rapids and West Michigan. Quality work, fair pricing, and a clear timeline from start to finish.
+        Custom decks and stairs for homes across Grand Rapids and West Michigan. Quality work, fair pricing, and a clear timeline from start to finish.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
         <a href="#quiz" class="btn-primary">Get My Instant Estimate →</a>
         <a href="#gallery" class="btn-outline">See Our Work</a>
       </div>
       <div style="margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 1.5rem;">
-        {["Real Estimate in Minutes", "No Pressure, No Obligation", "Grand Rapids + 80-Mile Radius"].map(t => (
+        {["Real Estimate in Minutes", "No Pressure, No Obligation", "Grand Rapids & West Michigan"].map(t => (
           <span style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.6); font-size: 0.85rem; font-family: 'DM Sans', sans-serif;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="#D9A55C"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             {t}
@@ -108,7 +108,7 @@ import Layout from '../layouts/Layout.astro';
           <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">What are you looking to build?</h3>
           <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Select all that apply.</p>
           <div style="display: flex; flex-direction: column; gap: 0.6rem;" id="opts-1">
-            {["New deck", "Replace existing deck", "Resurface existing deck", "Pergola", "Stairs", "Railings", "Full outdoor living space", "Not sure yet"].map(opt => (
+            {["New deck", "Replace existing deck", "Resurface existing deck", "Stairs", "Railings", "Deck repair", "Not sure yet"].map(opt => (
               <div class="quiz-option multi" data-step="1" data-value={opt}>
                 <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 4px; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s; display:flex; align-items:center; justify-content:center;"></div>
                 <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
@@ -252,7 +252,7 @@ import Layout from '../layouts/Layout.astro';
           <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">Any add-on features?</h3>
           <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Select everything you're interested in — we'll talk through what makes sense.</p>
           <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-            {["Pergola or shade structure", "Privacy wall or screen", "Deck lighting", "Built-in seating or benches", "Skirting / under-deck finishing", "Picture-frame border detail", "Outdoor kitchen area", "Under-deck drainage system", "Multiple levels", "Not sure yet", "None of these"].map(opt => (
+            {["Privacy wall or screen", "Deck lighting", "Built-in seating or benches", "Skirting / under-deck finishing", "Picture-frame border detail", "Under-deck drainage system", "Multiple levels", "Not sure yet", "None of these"].map(opt => (
               <div class="quiz-option multi" data-step="8" data-value={opt}>
                 <div class="opt-indicator" style="width: 18px; height: 18px; border-radius: 4px; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s; display:flex; align-items:center; justify-content:center;"></div>
                 <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
@@ -307,7 +307,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- Step 11: Location -->
         <div class="quiz-step" data-step="11" data-group="5">
           <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.4rem;">Where is the property?</h3>
-          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">We serve Grand Rapids and within 80 miles.</p>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">Based in Grand Rapids — we serve West Michigan and beyond.</p>
           <div style="display: flex; flex-direction: column; gap: 0.85rem;">
             <div>
               <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.35rem; font-family: 'DM Sans', sans-serif;">Street Address <span style="color: #9a9a9a; font-weight: 400;">(optional)</span></label>
@@ -465,7 +465,7 @@ import Layout from '../layouts/Layout.astro';
     <div style="text-align: center; margin-bottom: 4rem;">
       <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 0.75rem;">What We Build</p>
       <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: #1E3A2F; line-height: 1.2;">
-        Outdoor spaces built to last<br /><em>a lifetime</em>
+        Decks built to last<br /><em>a lifetime</em>
       </h2>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
@@ -481,13 +481,13 @@ import Layout from '../layouts/Layout.astro';
           img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80"
         },
         {
-          title: "Pergolas & Shade",
-          desc: "Add shade and structure to your yard. A well-placed pergola extends your outdoor season and gives the space a finished look.",
+          title: "Deck Repair & Resurfacing",
+          desc: "Boards gone soft or gray? We repair and resurface existing decks — replacing worn decking and railings so the structure is safe and looks new again.",
           img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80"
         },
         {
-          title: "Outdoor Living",
-          desc: "Fire pits, outdoor kitchens, seating walls, bar areas. We design complete outdoor rooms — not just platforms — so you actually use the space.",
+          title: "Multi-Level & Lakefront Decks",
+          desc: "Sloped lot or a lakeshore view? We design multi-level decks that follow the grade and open up the view — built for West Michigan weather.",
           img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80"
         }
       ].map(s => (
@@ -585,7 +585,7 @@ import Layout from '../layouts/Layout.astro';
       <div><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="Home with wraparound covered porch and railings" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" /></div>
       <div><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80" alt="Custom West Michigan home at dusk" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" /></div>
       <div><img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=600&q=80" alt="Wraparound deck at sunset" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" /></div>
-      <div><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="Covered outdoor living porch" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" /></div>
+      <div><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="Custom deck with railings in West Michigan" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" /></div>
     </div>
     <p style="text-align: center; margin-top: 2rem; color: rgba(255,255,255,0.3); font-size: 0.8rem; font-style: italic; font-family: 'DM Sans', sans-serif;">Portfolio grows as projects complete — check back soon.</p>
   </div>
@@ -613,7 +613,7 @@ import Layout from '../layouts/Layout.astro';
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       {[
         { label: "Licensed & Insured", detail: "Michigan contractor license — you're protected." },
-        { label: "Serving West Michigan", detail: "Grand Rapids + within 80 miles. We know these winters." },
+        { label: "Grand Rapids Based", detail: "Serving West Michigan. We know these winters." },
         { label: "Honest, All-In Pricing", detail: "Your estimate includes everything. No surprise invoices." },
         { label: "Richard on Every Job", detail: "Not a project manager. The owner. On site." }
       ].map(t => (
@@ -639,13 +639,13 @@ import Layout from '../layouts/Layout.astro';
       <div>
         <img src="/logo.png" alt="Grandson's Construction" style="height: 48px; width: auto; margin-bottom: 1rem;" />
         <p style="color: rgba(255,255,255,0.45); font-size: 0.875rem; line-height: 1.7; font-family: 'DM Sans', sans-serif;">
-          Custom decks, pergolas & outdoor living — built right the first time. Grand Rapids & West Michigan.
+          Custom decks and stairs — built right the first time. Based in Grand Rapids, serving West Michigan.
         </p>
       </div>
       <div>
         <h4 style="color: white; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; font-family: 'DM Sans', sans-serif;">Services</h4>
         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem;">
-          {["Custom Decks", "Stairs & Railings", "Pergolas & Shade", "Outdoor Living Spaces"].map(s => (
+          {["Custom Decks", "Stairs & Railings", "Deck Repair & Resurfacing", "Multi-Level & Lakefront Decks"].map(s => (
             <li style="color: rgba(255,255,255,0.45); font-size: 0.875rem; font-family: 'DM Sans', sans-serif;">{s}</li>
           ))}
         </ul>
@@ -655,7 +655,7 @@ import Layout from '../layouts/Layout.astro';
         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
           <li><a href="tel:+15863545427" style="color: rgba(255,255,255,0.45); font-size: 0.875rem; text-decoration: none; font-family: 'DM Sans', sans-serif;">(586) 354-5427</a></li>
           <li><a href="mailto:grandsonsconstructionllc@gmail.com" style="color: rgba(255,255,255,0.45); font-size: 0.875rem; text-decoration: none; font-family: 'DM Sans', sans-serif;">grandsonsconstructionllc@gmail.com</a></li>
-          <li style="color: rgba(255,255,255,0.45); font-size: 0.875rem; font-family: 'DM Sans', sans-serif;">Grand Rapids, MI + 80-mile radius</li>
+          <li style="color: rgba(255,255,255,0.45); font-size: 0.875rem; font-family: 'DM Sans', sans-serif;">Grand Rapids, MI · Serving West Michigan</li>
         </ul>
       </div>
     </div>

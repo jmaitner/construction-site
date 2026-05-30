@@ -43,6 +43,6 @@ No — when you hire a licensed contractor, **we handle the permit and inspectio
 
 ## Building a deck this year?
 
-We pull permits and build to code across Grand Rapids, Muskegon, Holland, and within 80 miles. Get a [free project estimate](/#quiz) to get started — no pressure, no obligation.
+We pull permits and build to code across Grand Rapids, Muskegon, Holland, and West Michigan. Get a [free project estimate](/#quiz) to get started — no pressure, no obligation.
 
 *This article is general information, not legal or code advice. Always confirm requirements with your local building department.*

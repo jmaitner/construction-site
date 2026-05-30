@@ -32,4 +32,4 @@ Here's what most people miss: the best time to *contact* a builder is **well bef
 
 ## Want a deck ready for summer?
 
-Don't wait until the warm weather hits and everyone's booked. Get your [free estimate now](/#quiz) and lock in your spot on the schedule. We serve Grand Rapids, Muskegon, Holland, and within 80 miles.
+Don't wait until the warm weather hits and everyone's booked. Get your [free estimate now](/#quiz) and lock in your spot on the schedule. Based in Grand Rapids, serving Muskegon, Holland, and West Michigan.

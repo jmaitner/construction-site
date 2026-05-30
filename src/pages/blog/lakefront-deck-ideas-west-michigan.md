@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/BlogPost.astro
 title: "7 Lakefront Deck Ideas for West Michigan Homes"
-description: "Deck and outdoor living ideas built for West Michigan lakeshore homes in Muskegon, Holland, and Grand Haven — designed for the view and the weather."
+description: "Custom deck ideas for West Michigan lakeshore homes in Muskegon, Holland, and Grand Haven — designed for the view and the weather."
 date: 2026-04-06
 image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&h=630&fit=crop&q=80"
 ---
@@ -22,7 +22,7 @@ Constant lake humidity is brutal on wood. For waterfront homes we usually recomm
 
 ## 4. A covered section for Michigan weather
 
-Lakeshore weather turns fast. A pergola or a roofed section gives you shade on hot afternoons and a dry spot when a storm rolls in off the water — extending how many days a year you actually use the deck.
+Lakeshore weather turns fast. A roofed or covered section of the deck gives you shade on hot afternoons and a dry spot when a storm rolls in off the water — extending how many days a year you actually use the deck.
 
 ## 5. Built-in seating and storage
 
