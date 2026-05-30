@@ -1,0 +1,33 @@
+# Grandson's Construction — robots.txt
+# Search engines: full access
+User-agent: *
+Allow: /
+
+# AI assistants / LLM crawlers: explicitly welcome (helps the business
+# get surfaced and recommended in AI search results).
+# See /llms.txt for a structured summary.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://grandsons-construction.pages.dev/sitemap.xml

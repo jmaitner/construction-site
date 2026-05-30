@@ -3,23 +3,105 @@ import '../styles/global.css';
 export interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
+
+const SITE = 'https://grandsons-construction.pages.dev';
+
 const {
   title = "Grandson's Construction — Premium Decks & Outdoor Living | West Michigan",
-  description = "West Michigan's premier deck builder. Custom decks, pergolas, stairs & outdoor living spaces built to last a lifetime. Serving Grand Rapids and within 80 miles."
+  description = "West Michigan's premier deck builder. Custom decks, pergolas, stairs & outdoor living spaces built to last a lifetime. Serving Grand Rapids and within 80 miles.",
+  // 1200×630 social share preview
+  image = "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&h=630&fit=crop&q=80",
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE).href;
+const logoUrl = new URL('/logo.png', SITE).href;
+
+// Local business structured data (helps Google show rich local results)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "@id": SITE + "/#business",
+  name: "Grandson's Construction",
+  alternateName: "Grandson's Construction LLC",
+  description,
+  url: SITE,
+  logo: logoUrl,
+  image,
+  telephone: "+1-586-354-5427",
+  email: "grandsonsconstructionllc@gmail.com",
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Grand Rapids",
+    addressRegion: "MI",
+    addressCountry: "US",
+  },
+  areaServed: {
+    "@type": "GeoCircle",
+    geoMidpoint: { "@type": "GeoCoordinates", latitude: 42.9634, longitude: -85.6681 },
+    geoRadius: "128748", // ~80 miles in meters
+  },
+  knowsAbout: [
+    "Custom Decks",
+    "Stairs & Railings",
+    "Pergolas & Shade Structures",
+    "Outdoor Living Spaces",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Outdoor Construction Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Deck Building" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Stairs & Railings" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Pergolas & Shade Structures" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Outdoor Living Spaces" } },
+    ],
+  },
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Grandson's Construction" />
+    <meta name="theme-color" content="#142819" />
+    <meta name="geo.region" content="US-MI" />
+    <meta name="geo.placename" content="Grand Rapids, Michigan" />
+
+    <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Open Graph (Facebook, LinkedIn, iMessage, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Grandson's Construction" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Custom West Michigan deck and outdoor living space by Grandson's Construction" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Structured data: LocalBusiness / GeneralContractor -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <slot />
