@@ -630,10 +630,24 @@ import Layout from '../layouts/Layout.astro';
           <div style="width: 64px; height: 64px; border-radius: 50%; background: #EAF0EA; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
             <svg width="28" height="28" fill="none" stroke="#1E3A2F" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.75rem; color: #1E3A2F; margin-bottom: 0.75rem;">We got it. Talk soon.</h3>
+          <h3 id="success-heading" style="font-family: 'Playfair Display', serif; font-size: 1.75rem; color: #1E3A2F; margin-bottom: 0.75rem;">We got it. Talk soon.</h3>
           <p id="success-message" style="font-size: 0.95rem; line-height: 1.7; color: #5a5a5a; max-width: 26rem; margin: 0 auto 1.5rem; font-family: 'DM Sans', sans-serif;">
             We received your project details and are preparing your preliminary estimate. You'll receive an email shortly with a personalized summary and estimated price range.
           </p>
+
+          <!-- Live quote card (populated from Claude) -->
+          <div id="quote-card" style="display: none; max-width: 32rem; margin: 0 auto 1.5rem; background: #F8F4ED; border: 1px solid #E5DDD0; border-radius: 14px; padding: 1.75rem 1.75rem 1.5rem; text-align: left;">
+            <p style="font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: #7A8B7F; margin-bottom: 0.35rem; font-family: 'DM Sans', sans-serif;">Estimated project range</p>
+            <p id="quote-range" style="font-family: 'Playfair Display', serif; font-size: 2.1rem; color: #1E3A2F; line-height: 1.1; margin-bottom: 0.4rem;"></p>
+            <p id="quote-confidence" style="font-size: 0.82rem; color: #7A8B7F; margin-bottom: 1.1rem; font-family: 'DM Sans', sans-serif;"></p>
+            <p id="quote-summary" style="color: #5a5a5a; line-height: 1.6; font-size: 0.92rem; margin-bottom: 1.1rem; font-family: 'DM Sans', sans-serif;"></p>
+            <div id="quote-assumptions-wrap" style="display: none; border-top: 1px solid #E5DDD0; padding-top: 1rem;">
+              <p style="font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; color: #7A8B7F; margin-bottom: 0.5rem; font-family: 'DM Sans', sans-serif;">What this assumes</p>
+              <ul id="quote-assumptions" style="margin: 0; padding-left: 1.1rem; color: #5a5a5a; font-size: 0.88rem; line-height: 1.7; font-family: 'DM Sans', sans-serif;"></ul>
+            </div>
+            <p style="font-size: 0.8rem; color: #7A8B7F; margin-top: 1.1rem; line-height: 1.5; font-family: 'DM Sans', sans-serif;">This is a preliminary range, not a final quote. Richard will follow up to confirm the details and lock in your exact price.</p>
+          </div>
+
           <div style="padding: 1.25rem; background: #F8F4ED; border-radius: 8px; border: 1px solid #EDE7D9; margin-bottom: 1.5rem;">
             <p style="font-size: 0.875rem; font-weight: 600; color: #1E3A2F; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Want the most accurate quote?</p>
             <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 0.85rem; font-family: 'DM Sans', sans-serif;">Schedule a quick 15-minute measurement call with Richard.</p>
@@ -938,26 +952,68 @@ import Layout from '../layouts/Layout.astro';
 
       if (resp.ok) {
         const firstName = name.split(' ')[0];
-        const successMsg = document.getElementById('success-message');
-        if (successMsg) {
-          successMsg.textContent = `Thanks, ${firstName}. We received your project details and are preparing your preliminary estimate. You'll receive an email shortly with a personalized project summary, estimated price range, key assumptions, and recommended next steps.`;
-        }
+        let data: any = {};
+        try { data = await resp.json(); } catch {}
+        renderSuccess(firstName, data.quote);
         showStep('success');
       } else {
         submitting = false;
         showStep('error');
       }
     } catch {
-      // While the Worker isn't live yet, show success for demo purposes
-      const firstName = name.split(' ')[0];
-      const successMsg = document.getElementById('success-message');
+      submitting = false;
+      showStep('error');
+    }
+  });
+
+  // Format a dollar amount as e.g. $18,500
+  function money(n: number): string {
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  // Render the success screen, showing the live Claude quote when available
+  function renderSuccess(firstName: string, quote: any) {
+    const heading = document.getElementById('success-heading');
+    const successMsg = document.getElementById('success-message');
+    const card = document.getElementById('quote-card');
+
+    if (quote && typeof quote.estimatedLow === 'number' && typeof quote.estimatedHigh === 'number') {
+      if (heading) heading.textContent = `Here's your estimate, ${firstName}`;
+      if (successMsg) {
+        successMsg.textContent = "Based on what you shared, here's your preliminary range. We've also emailed you a copy — Richard will be in touch to confirm the details.";
+      }
+      const range = document.getElementById('quote-range');
+      if (range) range.textContent = `${money(quote.estimatedLow)} – ${money(quote.estimatedHigh)}`;
+
+      const conf = document.getElementById('quote-confidence');
+      if (conf) {
+        const label = quote.quoteConfidence ? quote.quoteConfidence.charAt(0).toUpperCase() + quote.quoteConfidence.slice(1) : '';
+        conf.textContent = label ? `Confidence: ${label} — refined after a quick measurement visit` : '';
+      }
+      const sum = document.getElementById('quote-summary');
+      if (sum) sum.textContent = quote.customerFriendlySummary || quote.projectSummary || '';
+
+      const wrap = document.getElementById('quote-assumptions-wrap');
+      const ul = document.getElementById('quote-assumptions');
+      if (ul && wrap && Array.isArray(quote.assumptions) && quote.assumptions.length) {
+        ul.innerHTML = '';
+        quote.assumptions.forEach((a: string) => {
+          const li = document.createElement('li');
+          li.textContent = a;
+          ul.appendChild(li);
+        });
+        wrap.style.display = 'block';
+      }
+      if (card) card.style.display = 'block';
+    } else {
+      // No quote returned — graceful fallback
+      if (heading) heading.textContent = 'Request received!';
       if (successMsg) {
         successMsg.textContent = `Thanks, ${firstName}. We received your project details and are preparing your preliminary estimate. You'll receive an email shortly with a personalized project summary, estimated price range, key assumptions, and recommended next steps.`;
       }
-      submitting = false;
-      showStep('success');
+      if (card) card.style.display = 'none';
     }
-  });
+  }
 </script>
 
 <style>

@@ -32,10 +32,24 @@ async function handleSubmit(request, env) {
   try { quote = await generateQuote(buildContext(body), env); }
   catch (err) { console.error('Claude error:', err); quote = fallbackQuote(body); }
 
+  let saved = true;
   try { await appendToSheets(body, quote, env); }
-  catch (err) { console.error('Sheets error:', err); return json({ error: 'Failed to save lead' }, 500); }
+  catch (err) { saved = false; console.error('Sheets error:', err); }
 
-  return json({ ok: true, quoteConfidence: quote.quoteConfidence });
+  // Always return the quote to the customer — we never want to lose the moment,
+  // even if the back-office save hiccups. `saved` flags capture status for monitoring.
+  return json({
+    ok: true,
+    saved,
+    quote: {
+      estimatedLow: quote.estimatedLow,
+      estimatedHigh: quote.estimatedHigh,
+      quoteConfidence: quote.quoteConfidence,
+      projectSummary: quote.projectSummary,
+      customerFriendlySummary: quote.customerFriendlySummary,
+      assumptions: Array.isArray(quote.assumptions) ? quote.assumptions.slice(0, 5) : [],
+    },
+  });
 }
 
 async function generateQuote(context, env) {
