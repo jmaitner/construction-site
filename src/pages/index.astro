@@ -12,6 +12,7 @@ import Layout from '../layouts/Layout.astro';
     <a href="#services" class="text-white/80 hover:text-white text-sm font-medium transition-colors" style="font-family: 'DM Sans', sans-serif;">Services</a>
     <a href="#process" class="text-white/80 hover:text-white text-sm font-medium transition-colors" style="font-family: 'DM Sans', sans-serif;">Our Process</a>
     <a href="#gallery" class="text-white/80 hover:text-white text-sm font-medium transition-colors" style="font-family: 'DM Sans', sans-serif;">Gallery</a>
+    <a href="/blog" class="text-white/80 hover:text-white text-sm font-medium transition-colors" style="font-family: 'DM Sans', sans-serif;">Guides</a>
     <a href="#quiz" class="btn-primary" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Get My Instant Estimate</a>
   </div>
   <button id="mobile-menu-btn" class="md:hidden text-white" aria-label="Menu">
@@ -28,6 +29,7 @@ import Layout from '../layouts/Layout.astro';
   <a href="#services" class="mobile-link text-white text-2xl" style="font-family: 'Playfair Display', serif;">Services</a>
   <a href="#process" class="mobile-link text-white text-2xl" style="font-family: 'Playfair Display', serif;">Our Process</a>
   <a href="#gallery" class="mobile-link text-white text-2xl" style="font-family: 'Playfair Display', serif;">Gallery</a>
+  <a href="/blog" class="mobile-link text-white text-2xl" style="font-family: 'Playfair Display', serif;">Guides</a>
   <a href="#quiz" class="mobile-link btn-primary text-lg mt-4">Get My Instant Estimate</a>
 </div>
 
@@ -40,14 +42,14 @@ import Layout from '../layouts/Layout.astro';
   </div>
   <div class="relative z-10 max-w-6xl mx-auto px-6 md:px-12" style="padding-top: 9rem; padding-bottom: 5rem;">
     <div style="max-width: 42rem;">
-      <p style="color: #D9A55C; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem;">West Michigan's Premier Outdoor Builder</p>
+      <p style="color: #D9A55C; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem;">West Michigan Deck Builder</p>
       <h1 class="text-white" style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem;">
-        The Outdoor Space<br />
-        <em>Your Neighbors Will Ask</em><br />
-        <span style="color: #D9A55C;">About for Years</span>
+        Custom Decks &amp;<br />
+        Outdoor Living<br />
+        <span style="color: #D9A55C;">in West Michigan</span>
       </h1>
       <p class="text-white/80" style="font-size: 1.1rem; line-height: 1.75; margin-bottom: 2rem; max-width: 36rem; font-family: 'DM Sans', sans-serif;">
-        Custom decks, lakefront builds, pergolas & outdoor living crafted for West Michigan homes — built with the kind of care your grandfather would be proud of, at a fair price, without the stress of unreliable contractors or no-shows.
+        Custom decks, pergolas, and outdoor living spaces for homes across Grand Rapids and West Michigan. Quality work, fair pricing, and a clear timeline from start to finish.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
         <a href="#quiz" class="btn-primary">Get My Instant Estimate →</a>
@@ -453,51 +455,6 @@ import Layout from '../layouts/Layout.astro';
       </form>
     </div>
 
-    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: #9a9a9a; font-family: 'DM Sans', sans-serif;">
-      <strong style="color: #5a5a5a;">PS —</strong> You'll get a fair, honest price and a deck your neighbors stop to ask about. Fill out the form and we'll get you a real number.
-    </p>
-  </div>
-</section>
-
-
-<!-- WHO THIS IS FOR -->
-<section style="background: #1E3A2F; padding: 5rem 1.5rem;">
-  <div style="max-width: 64rem; margin: 0 auto;">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
-      <div>
-        <h2 style="color: white; font-family: 'Playfair Display', serif; font-size: 1.75rem; margin-bottom: 1.5rem;">This is for you if…</h2>
-        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
-          {[
-            "You've looked at your backyard — or your stretch of lakeshore — and thought “this could be something special”",
-            "You want lasting craftsmanship at a fair, honest price — built right the first time so you're not paying to redo it after a few Michigan winters",
-            "You want someone who shows up, communicates, and finishes on time",
-            "You see a deck as an investment in your home and the summers your family will spend on it",
-            "You want one local crew — not a revolving door of subcontractors"
-          ].map(item => (
-            <li style="display: flex; gap: 0.75rem; color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.65; font-family: 'DM Sans', sans-serif;">
-              <span style="color: #D9A55C; flex-shrink: 0; margin-top: 2px;">✓</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2 style="color: rgba(255,255,255,0.35); font-family: 'Playfair Display', serif; font-size: 1.75rem; margin-bottom: 1.5rem;">This is NOT for you if…</h2>
-        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
-          {[
-            "You're shopping on price alone and nothing else matters",
-            "You want a quick weekend patch job with big-box lumber",
-            "You need someone to start tomorrow — quality work means a real schedule",
-            "You're outside our service area (within 80 miles of Grand Rapids)"
-          ].map(item => (
-            <li style="display: flex; gap: 0.75rem; color: rgba(255,255,255,0.35); font-size: 0.95rem; line-height: 1.65; font-family: 'DM Sans', sans-serif;">
-              <span style="flex-shrink: 0; margin-top: 2px;">✕</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -515,7 +472,7 @@ import Layout from '../layouts/Layout.astro';
       {[
         {
           title: "Custom Decks",
-          desc: "From pressure-treated pine to Trex composite, we design and build decks that fit your home, your yard, and the way your family actually lives outside.",
+          desc: "From pressure-treated pine to composite, we design and build decks that fit your home, your yard, and your budget.",
           img: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=600&q=80"
         },
         {
@@ -525,7 +482,7 @@ import Layout from '../layouts/Layout.astro';
         },
         {
           title: "Pergolas & Shade",
-          desc: "Extend your season. A well-placed pergola transforms a hot afternoon into a comfortable one — and makes your yard a place people want to stay.",
+          desc: "Add shade and structure to your yard. A well-placed pergola extends your outdoor season and gives the space a finished look.",
           img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80"
         },
         {
@@ -556,15 +513,12 @@ import Layout from '../layouts/Layout.astro';
     <div style="position: absolute; inset: 0; background: rgba(20,40,25,0.82);"></div>
   </div>
   <div style="position: relative; z-index: 10; max-width: 48rem; margin: 0 auto; text-align: center;">
-    <p style="color: #D9A55C; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem;">Picture This</p>
+    <p style="color: #D9A55C; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem;">Built to Last</p>
     <h2 class="text-white" style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.25; margin-bottom: 2rem;">
-      It's a Saturday morning.<br />
-      You're holding a coffee.<br />
-      <em>You're standing on your deck.</em>
+      Decks built right<br /><em>the first time.</em>
     </h2>
     <p style="color: rgba(255,255,255,0.75); font-size: 1.05rem; line-height: 1.8; margin-bottom: 2.5rem; font-family: 'DM Sans', sans-serif;">
-      The boards are solid under your feet. The railing doesn't flex when your kid leans on it. Your neighbor walks over and asks who built it — and you smile because you already knew they would.<br /><br />
-      That's what we build. Not just lumber and hardware. The place your family ends up at the end of every good day.
+      We use quality materials and proven construction methods so your deck holds up to West Michigan winters and lakeshore weather for years. One local crew, one job at a time, finished on schedule.
     </p>
     <a href="#quiz" class="btn-primary">Get My Instant Estimate →</a>
   </div>
@@ -577,28 +531,28 @@ import Layout from '../layouts/Layout.astro';
     <div style="text-align: center; margin-bottom: 4rem;">
       <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 0.75rem;">How It Works</p>
       <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: #1E3A2F; line-height: 1.2; margin-bottom: 1rem;">
-        Three steps. No runaround.
+        How it works
       </h2>
       <p style="font-size: 1rem; color: #5a5a5a; font-family: 'DM Sans', sans-serif; max-width: 32rem; margin: 0 auto;">
-        Most homeowners dread hiring contractors. Here's how we make it easy.
+        A simple, three-step process from first call to finished deck.
       </p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem;">
       {[
         {
           step: "01",
-          title: "Tell Us About Your Space",
-          desc: "Fill out our 2-minute project quiz. Tell us what you're dreaming of, your timeline, and your budget. No sales pressure — just information so we can give you a real answer."
+          title: "Tell Us About Your Project",
+          desc: "Fill out our quick project form with what you're looking to build, your timeline, and your budget. It takes about two minutes."
         },
         {
           step: "02",
-          title: "Free Design Consultation",
-          desc: "Richard walks your property, listens to what you want, and gives you a clear, detailed quote. You'll know exactly what you're getting and what it costs — before anything is signed."
+          title: "Free On-Site Quote",
+          desc: "Richard visits your property, talks through your options, and gives you a clear, detailed quote. You'll know the full scope and cost before anything is signed."
         },
         {
           step: "03",
-          title: "We Build. You Enjoy.",
-          desc: "Our crew shows up on schedule, works clean, and communicates throughout. When done, you do a final walkthrough with Richard personally. Then you go enjoy your new outdoor space."
+          title: "We Build It",
+          desc: "Our crew shows up on schedule, keeps the site clean, and keeps you updated. When it's finished, you walk through the completed deck with Richard."
         }
       ].map(p => (
         <div>
@@ -642,18 +596,18 @@ import Layout from '../layouts/Layout.astro';
 <section style="background: #EDE7D9; padding: 5rem 1.5rem;">
   <div style="max-width: 60rem; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
     <div>
-      <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1rem;">The honest version</p>
+      <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1rem;">Why Grandson's</p>
       <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #1E3A2F; line-height: 1.25; margin-bottom: 1.5rem;">
         Fair pricing.<br />Built to last.
       </h2>
       <p style="font-size: 0.95rem; line-height: 1.75; color: #3a3a3a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">
-        We won't be the cheapest quote you get — but we won't gouge you either. You get an honest, detailed price up front, and a deck built right the first time so you're not paying to fix it down the road.
+        You'll get a clear, detailed price up front, and a deck built right the first time — so you're not paying to fix it down the road.
       </p>
       <p style="font-size: 0.95rem; line-height: 1.75; color: #3a3a3a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">
-        We build one job at a time. Richard is on every site. We use materials that stand up to West Michigan winters and lakeshore weather without warping, cracking, or looking tired in a few years.
+        We build one job at a time, and Richard is on every site. We use materials that stand up to West Michigan winters and lakeshore weather.
       </p>
       <p style="font-size: 0.95rem; line-height: 1.75; color: #3a3a3a; font-family: 'DM Sans', sans-serif;">
-        Real value isn't the lowest bid — it's a deck your family enjoys for decades. That's what we build.
+        Licensed, insured, and local — serving Grand Rapids, Muskegon, Holland, and the surrounding communities.
       </p>
     </div>
     <div style="display: flex; flex-direction: column; gap: 1rem;">

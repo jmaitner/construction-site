@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Pull every markdown post in this folder
+const modules = import.meta.glob('./*.md', { eager: true });
+const posts = Object.values(modules)
+  .map((m) => ({ ...m.frontmatter, url: m.url }))
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+
+const fmtDate = (d) =>
+  d ? new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+---
+<Layout
+  title="Deck Building Guides for West Michigan Homeowners | Grandson's Construction"
+  description="Practical guides on deck costs, materials, permits, and maintenance for Grand Rapids and West Michigan homeowners — from a local deck builder."
+>
+  <!-- Header -->
+  <header style="background: #1E3A2F; padding: 1.1rem 1.5rem;">
+    <div style="max-width: 60rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+      <a href="/" style="display: flex; align-items: center;">
+        <img src="/logo.png" alt="Grandson's Construction" style="height: 34px; width: auto;" />
+      </a>
+      <a href="/#quiz" class="btn-primary" style="font-size: 0.8rem; padding: 0.55rem 1.1rem;">Get My Instant Estimate</a>
+    </div>
+  </header>
+
+  <section style="background: #F8F4ED; padding: 3.5rem 1.5rem 1.5rem;">
+    <div style="max-width: 60rem; margin: 0 auto; text-align: center;">
+      <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 0.75rem;">Deck Building Guides</p>
+      <h1 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.75rem); color: #1E3A2F; line-height: 1.2; margin-bottom: 1rem;">Decking guides for West Michigan</h1>
+      <p style="color: #5a5a5a; font-family: 'DM Sans', sans-serif; font-size: 1rem; line-height: 1.6; max-width: 36rem; margin: 0 auto;">
+        Straight answers on cost, materials, permits, and maintenance — written for homeowners in Grand Rapids, Muskegon, Holland, and across West Michigan.
+      </p>
+    </div>
+  </section>
+
+  <section style="background: #F8F4ED; padding: 1.5rem 1.5rem 5rem;">
+    <div style="max-width: 60rem; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+      {posts.map((post) => (
+        <a href={post.url} style="display: block; background: white; border: 1px solid #EDE7D9; border-radius: 10px; overflow: hidden; text-decoration: none; transition: box-shadow 0.2s;">
+          {post.image && (
+            <div style="height: 170px; overflow: hidden;">
+              <img src={post.image} alt={post.title} style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+          )}
+          <div style="padding: 1.4rem;">
+            <p style="font-size: 0.75rem; color: #9a9a9a; margin-bottom: 0.5rem; font-family: 'DM Sans', sans-serif;">{fmtDate(post.date)}</p>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #1E3A2F; line-height: 1.3; margin-bottom: 0.6rem;">{post.title}</h2>
+            <p style="font-size: 0.9rem; color: #5a5a5a; line-height: 1.6; font-family: 'DM Sans', sans-serif;">{post.description}</p>
+            <p style="margin-top: 0.9rem; color: #C4873A; font-size: 0.85rem; font-weight: 600; font-family: 'DM Sans', sans-serif;">Read guide →</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <footer style="background: #142819; padding: 2.5rem 1.5rem; text-align: center;">
+    <p style="color: rgba(255,255,255,0.4); font-size: 0.8rem; font-family: 'DM Sans', sans-serif;">© 2025 Grandson's Construction · Licensed &amp; Insured in Michigan · Grand Rapids &amp; West Michigan</p>
+  </footer>
+</Layout>

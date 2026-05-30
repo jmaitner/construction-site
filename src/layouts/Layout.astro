@@ -103,6 +103,9 @@ const jsonLd = {
 
     <!-- Structured data: LocalBusiness / GeneralContractor -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Per-page extras (e.g. blog Article schema) -->
+    <slot name="head" />
   </head>
   <body>
     <slot />

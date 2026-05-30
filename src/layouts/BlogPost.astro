@@ -1,0 +1,103 @@
+---
+import Layout from './Layout.astro';
+
+const SITE = 'https://grandsons-construction.pages.dev';
+const { frontmatter } = Astro.props;
+const {
+  title,
+  description,
+  date,
+  updated,
+  author = "Grandson's Construction",
+  image = "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=1200&h=630&fit=crop&q=80",
+} = frontmatter;
+
+const url = new URL(Astro.url.pathname, SITE).href;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  image,
+  datePublished: date,
+  dateModified: updated || date,
+  author: { "@type": "Organization", name: author, url: SITE },
+  publisher: {
+    "@type": "Organization",
+    name: "Grandson's Construction",
+    logo: { "@type": "ImageObject", url: SITE + "/logo.png" },
+  },
+  mainEntityOfPage: { "@type": "WebPage", "@id": url },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE },
+    { "@type": "ListItem", position: 2, name: "Guides", item: SITE + "/blog" },
+    { "@type": "ListItem", position: 3, name: title, item: url },
+  ],
+};
+
+const prettyDate = date
+  ? new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : '';
+---
+<Layout title={`${title} | Grandson's Construction`} description={description} image={image}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+
+  <!-- Simple header -->
+  <header style="background: #1E3A2F; padding: 1.1rem 1.5rem;">
+    <div style="max-width: 48rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+      <a href="/" style="display: flex; align-items: center;">
+        <img src="/logo.png" alt="Grandson's Construction" style="height: 34px; width: auto;" />
+      </a>
+      <a href="/#quiz" class="btn-primary" style="font-size: 0.8rem; padding: 0.55rem 1.1rem;">Get My Instant Estimate</a>
+    </div>
+  </header>
+
+  <article style="max-width: 44rem; margin: 0 auto; padding: 3rem 1.5rem 4rem;">
+    <nav style="font-size: 0.8rem; color: #8a8a8a; margin-bottom: 1.5rem; font-family: 'DM Sans', sans-serif;">
+      <a href="/" style="color: #8a8a8a; text-decoration: none;">Home</a> ›
+      <a href="/blog" style="color: #8a8a8a; text-decoration: none;">Guides</a> › <span style="color: #C4873A;">{title}</span>
+    </nav>
+
+    <h1 style="font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 4vw, 2.6rem); color: #1E3A2F; line-height: 1.18; margin-bottom: 0.9rem;">{title}</h1>
+    {prettyDate && <p style="font-size: 0.85rem; color: #9a9a9a; margin-bottom: 2rem; font-family: 'DM Sans', sans-serif;">{prettyDate} · Grandson's Construction</p>}
+
+    <div class="post-body">
+      <slot />
+    </div>
+
+    <!-- CTA -->
+    <div style="margin-top: 3rem; padding: 2rem; background: #1E3A2F; border-radius: 12px; text-align: center;">
+      <h2 style="font-family: 'Playfair Display', serif; color: white; font-size: 1.5rem; margin-bottom: 0.6rem;">Planning a deck in West Michigan?</h2>
+      <p style="color: rgba(255,255,255,0.75); font-size: 0.95rem; margin-bottom: 1.5rem; font-family: 'DM Sans', sans-serif;">Get a free, no-pressure estimate for your project — serving Grand Rapids, Muskegon, Holland, and within 80 miles.</p>
+      <a href="/#quiz" class="btn-primary">Get My Instant Estimate →</a>
+    </div>
+
+    <p style="margin-top: 2rem; text-align: center;"><a href="/blog" style="color: #C4873A; font-size: 0.9rem; text-decoration: none; font-family: 'DM Sans', sans-serif;">← Back to all guides</a></p>
+  </article>
+
+  <footer style="background: #142819; padding: 2.5rem 1.5rem; text-align: center;">
+    <p style="color: rgba(255,255,255,0.4); font-size: 0.8rem; font-family: 'DM Sans', sans-serif;">© 2025 Grandson's Construction · Licensed &amp; Insured in Michigan · Grand Rapids &amp; West Michigan</p>
+  </footer>
+</Layout>
+
+<style is:global>
+  .post-body { font-family: 'DM Sans', sans-serif; color: #2f2f2f; font-size: 1.02rem; line-height: 1.75; }
+  .post-body h2 { font-family: 'Playfair Display', serif; color: #1E3A2F; font-size: 1.55rem; line-height: 1.25; margin: 2.4rem 0 0.9rem; }
+  .post-body h3 { font-family: 'Playfair Display', serif; color: #1E3A2F; font-size: 1.2rem; margin: 1.8rem 0 0.6rem; }
+  .post-body p { margin: 0 0 1.1rem; }
+  .post-body ul, .post-body ol { margin: 0 0 1.2rem; padding-left: 1.4rem; }
+  .post-body li { margin-bottom: 0.5rem; }
+  .post-body a { color: #C4873A; text-decoration: underline; }
+  .post-body strong { color: #1E3A2F; }
+  .post-body table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.95rem; }
+  .post-body th, .post-body td { border: 1px solid #E0DACE; padding: 0.6rem 0.8rem; text-align: left; }
+  .post-body th { background: #F8F4ED; color: #1E3A2F; }
+  .post-body blockquote { border-left: 3px solid #C4873A; padding-left: 1rem; color: #5a5a5a; font-style: italic; margin: 1.2rem 0; }
+</style>
