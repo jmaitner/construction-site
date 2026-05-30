@@ -1,0 +1,14 @@
+name = "grandsons-quote-worker"
+main = "src/worker.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://grandsons-construction.pages.dev"
+CONTRACTOR_EMAIL = "grandsonsconstructionllc@gmail.com"
+CONTRACTOR_NAME = "Richard"
+BUSINESS_NAME = "Grandson's Construction"
+
+# Set these secrets via the Cloudflare dashboard (Workers → Settings → Variables):
+# ANTHROPIC_API_KEY
+# GOOGLE_SHEETS_ID
+# GOOGLE_SERVICE_KEY_JSON
