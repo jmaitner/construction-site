@@ -930,7 +930,7 @@ import Layout from '../layouts/Layout.astro';
     console.log('Grandson\'s Construction — Lead submission:', payload);
 
     try {
-      const resp = await fetch('/api/submit-lead', {
+      const resp = await fetch('https://grandsons-quote-worker.jmaitner1.workers.dev/api/submit-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
