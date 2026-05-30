@@ -1,0 +1,558 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+
+<!-- NAV -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-12 flex items-center justify-between" style="background: transparent;">
+  <div class="text-white text-xl font-semibold leading-tight" style="font-family: 'Playfair Display', serif;">
+    Grandson's<br /><span style="color: #D9A55C; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'DM Sans', sans-serif;">Construction</span>
+  </div>
+  <div class="hidden md:flex items-center gap-8">
+    <a href="#services" class="text-white/80 hover:text-white text-sm font-medium transition-colors" style="font-family: 'DM Sans', sans-serif;">Services</a>
+    <a href="#process" class="text-white/80 hover:text-white text-sm font-medium transition-colors" style="font-family: 'DM Sans', sans-serif;">Our Process</a>
+    <a href="#gallery" class="text-white/80 hover:text-white text-sm font-medium transition-colors" style="font-family: 'DM Sans', sans-serif;">Gallery</a>
+    <a href="#quiz" class="btn-primary" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Get a Free Quote</a>
+  </div>
+  <button id="mobile-menu-btn" class="md:hidden text-white" aria-label="Menu">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 flex-col items-center justify-center gap-8 text-center" style="background: #1E3A2F; display: none;">
+  <button id="mobile-close" class="absolute top-6 right-6 text-white">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+  <a href="#services" class="mobile-link text-white text-2xl" style="font-family: 'Playfair Display', serif;">Services</a>
+  <a href="#process" class="mobile-link text-white text-2xl" style="font-family: 'Playfair Display', serif;">Our Process</a>
+  <a href="#gallery" class="mobile-link text-white text-2xl" style="font-family: 'Playfair Display', serif;">Gallery</a>
+  <a href="#quiz" class="mobile-link btn-primary text-lg mt-4">Get a Free Quote</a>
+</div>
+
+
+<!-- HERO -->
+<section class="relative flex items-center overflow-hidden" style="min-height: 100vh;">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80" alt="Beautiful lake landscape West Michigan" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0" style="background: linear-gradient(105deg, rgba(20,40,25,0.85) 0%, rgba(20,40,25,0.55) 60%, rgba(0,0,0,0.15) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-6xl mx-auto px-6 md:px-12" style="padding-top: 9rem; padding-bottom: 5rem;">
+    <div style="max-width: 42rem;">
+      <p style="color: #D9A55C; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem;">West Michigan's Premier Outdoor Builder</p>
+      <h1 class="text-white" style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem;">
+        The Outdoor Space<br />
+        <em>Your Neighbors Will Ask</em><br />
+        <span style="color: #D9A55C;">About for Years</span>
+      </h1>
+      <p class="text-white/80" style="font-size: 1.1rem; line-height: 1.75; margin-bottom: 2rem; max-width: 36rem; font-family: 'DM Sans', sans-serif;">
+        Custom decks, pergolas & outdoor living built with the kind of craftsmanship your grandfather would be proud of — without the stress of unreliable contractors or wasted weekends waiting on no-shows.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        <a href="#quiz" class="btn-primary">Design My Outdoor Space →</a>
+        <a href="#gallery" class="btn-outline">See Our Work</a>
+      </div>
+      <div style="margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 1.5rem;">
+        {["Fully Licensed & Insured", "Grand Rapids + 80-Mile Radius", "Free Design Consultation"].map(t => (
+          <span style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.6); font-size: 0.85rem; font-family: 'DM Sans', sans-serif;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#D9A55C"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2" style="transform: translateX(-50%); color: rgba(255,255,255,0.4); animation: bounce 2s infinite;">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+
+<!-- WHO THIS IS FOR -->
+<section style="background: #1E3A2F; padding: 5rem 1.5rem;">
+  <div style="max-width: 64rem; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+      <div>
+        <h2 style="color: white; font-family: 'Playfair Display', serif; font-size: 1.75rem; margin-bottom: 1.5rem;">This is for you if…</h2>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
+          {[
+            "You've looked at your backyard and thought “this could be something special”",
+            "You want craftsmanship, not the cheapest bid — you've seen what cheap builds look like after two West Michigan winters",
+            "You want someone who shows up, communicates, and finishes on time",
+            "You're ready to invest $15K–$40K in a space your family will use for decades",
+            "You want one crew — not a revolving door of subcontractors"
+          ].map(item => (
+            <li style="display: flex; gap: 0.75rem; color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.65; font-family: 'DM Sans', sans-serif;">
+              <span style="color: #D9A55C; flex-shrink: 0; margin-top: 2px;">✓</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 style="color: rgba(255,255,255,0.35); font-family: 'Playfair Display', serif; font-size: 1.75rem; margin-bottom: 1.5rem;">This is NOT for you if…</h2>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
+          {[
+            "You need the lowest price in town — we're not it, and we're proud of that",
+            "You want a deck done in a weekend with big-box lumber",
+            "You need someone to start tomorrow — quality work means a real schedule",
+            "You're outside our service area (within 80 miles of Grand Rapids)"
+          ].map(item => (
+            <li style="display: flex; gap: 0.75rem; color: rgba(255,255,255,0.35); font-size: 0.95rem; line-height: 1.65; font-family: 'DM Sans', sans-serif;">
+              <span style="flex-shrink: 0; margin-top: 2px;">✕</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section id="services" style="background: #F8F4ED; padding: 6rem 1.5rem;">
+  <div style="max-width: 72rem; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 4rem;">
+      <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 0.75rem;">What We Build</p>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: #1E3A2F; line-height: 1.2;">
+        Outdoor spaces built to last<br /><em>a lifetime</em>
+      </h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+      {[
+        {
+          title: "Custom Decks",
+          desc: "From pressure-treated pine to Trex composite, we design and build decks that fit your home, your yard, and the way your family actually lives outside.",
+          img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80"
+        },
+        {
+          title: "Stairs & Railings",
+          desc: "Code-compliant, beautifully detailed. Our stairs and railings hold up through Michigan winters without cracking, shifting, or becoming an eyesore.",
+          img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"
+        },
+        {
+          title: "Pergolas & Shade",
+          desc: "Extend your season. A well-placed pergola transforms a hot afternoon into a comfortable one — and makes your yard a place people want to stay.",
+          img: "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=600&q=80"
+        },
+        {
+          title: "Outdoor Living",
+          desc: "Fire pits, outdoor kitchens, seating walls, bar areas. We design complete outdoor rooms — not just platforms — so you actually use the space.",
+          img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80"
+        }
+      ].map(s => (
+        <div style="border-radius: 8px; overflow: hidden; background: white; border: 1px solid #EDE7D9; transition: box-shadow 0.3s;">
+          <div style="height: 200px; overflow: hidden;">
+            <img src={s.img} alt={s.title} style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" />
+          </div>
+          <div style="padding: 1.5rem;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #1E3A2F; margin-bottom: 0.75rem;">{s.title}</h3>
+            <p style="font-size: 0.9rem; line-height: 1.65; color: #5a5a5a; font-family: 'DM Sans', sans-serif;">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- SHOW DON'T TELL -->
+<section style="position: relative; padding: 7rem 1.5rem; overflow: hidden;">
+  <div style="position: absolute; inset: 0;">
+    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1920&q=80" alt="Morning lake view West Michigan" style="width: 100%; height: 100%; object-fit: cover;" />
+    <div style="position: absolute; inset: 0; background: rgba(20,40,25,0.82);"></div>
+  </div>
+  <div style="position: relative; z-index: 10; max-width: 48rem; margin: 0 auto; text-align: center;">
+    <p style="color: #D9A55C; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem;">Picture This</p>
+    <h2 class="text-white" style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.25; margin-bottom: 2rem;">
+      It's a Saturday morning.<br />
+      You're holding a coffee.<br />
+      <em>You're standing on your deck.</em>
+    </h2>
+    <p style="color: rgba(255,255,255,0.75); font-size: 1.05rem; line-height: 1.8; margin-bottom: 2.5rem; font-family: 'DM Sans', sans-serif;">
+      The boards are solid under your feet. The railing doesn't flex when your kid leans on it. Your neighbor walks over and asks who built it — and you smile because you already knew they would.<br /><br />
+      That's what we build. Not just lumber and hardware. The place your family ends up at the end of every good day.
+    </p>
+    <a href="#quiz" class="btn-primary">Start My Project →</a>
+  </div>
+</section>
+
+
+<!-- PROCESS -->
+<section id="process" style="background: #F8F4ED; padding: 6rem 1.5rem;">
+  <div style="max-width: 60rem; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 4rem;">
+      <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 0.75rem;">How It Works</p>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: #1E3A2F; line-height: 1.2; margin-bottom: 1rem;">
+        Three steps. No runaround.
+      </h2>
+      <p style="font-size: 1rem; color: #5a5a5a; font-family: 'DM Sans', sans-serif; max-width: 32rem; margin: 0 auto;">
+        Most homeowners dread hiring contractors. Here's how we make it easy.
+      </p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem;">
+      {[
+        {
+          step: "01",
+          title: "Tell Us About Your Space",
+          desc: "Fill out our 2-minute project quiz. Tell us what you're dreaming of, your timeline, and your budget. No sales pressure — just information so we can give you a real answer."
+        },
+        {
+          step: "02",
+          title: "Free Design Consultation",
+          desc: "Richard walks your property, listens to what you want, and gives you a clear, detailed quote. You'll know exactly what you're getting and what it costs — before anything is signed."
+        },
+        {
+          step: "03",
+          title: "We Build. You Enjoy.",
+          desc: "Our crew shows up on schedule, works clean, and communicates throughout. When done, you do a final walkthrough with Richard personally. Then you go enjoy your new outdoor space."
+        }
+      ].map(p => (
+        <div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 700; color: #EDE7D9; line-height: 1; margin-bottom: -1rem;">{p.step}</div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; color: #1E3A2F; margin-bottom: 0.75rem; position: relative;">{p.title}</h3>
+          <p style="font-size: 0.9rem; line-height: 1.7; color: #5a5a5a; font-family: 'DM Sans', sans-serif;">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+    <div style="text-align: center; margin-top: 4rem;">
+      <a href="#quiz" class="btn-primary">Start Step One →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- GALLERY -->
+<section id="gallery" style="background: #1E3A2F; padding: 6rem 1.5rem;">
+  <div style="max-width: 72rem; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 3.5rem;">
+      <p style="color: #D9A55C; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 0.75rem;">Our Work</p>
+      <h2 class="text-white" style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2;">
+        Built in West Michigan.<br /><em>Built to last.</em>
+      </h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 0.875rem;">
+      <div style="grid-row: span 2;">
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Custom deck build Michigan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; min-height: 420px;" />
+      </div>
+      <div><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Outdoor lakefront living" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" /></div>
+      <div><img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=600&q=80" alt="Pergola outdoor shade" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" /></div>
+      <div><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Lake view West Michigan" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" /></div>
+      <div><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" alt="Outdoor living space" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" /></div>
+    </div>
+    <p style="text-align: center; margin-top: 2rem; color: rgba(255,255,255,0.3); font-size: 0.8rem; font-style: italic; font-family: 'DM Sans', sans-serif;">Portfolio grows as projects complete — check back soon.</p>
+  </div>
+</section>
+
+
+<!-- TRUST / DAMAGING ADMISSION -->
+<section style="background: #EDE7D9; padding: 5rem 1.5rem;">
+  <div style="max-width: 60rem; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+    <div>
+      <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 1rem;">The honest version</p>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #1E3A2F; line-height: 1.25; margin-bottom: 1.5rem;">
+        We're not the fastest crew<br />in Grand Rapids.
+      </h2>
+      <p style="font-size: 0.95rem; line-height: 1.75; color: #3a3a3a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">
+        But every homeowner who's stood on a Grandson's Construction deck told us the same thing: <em>"It was worth the wait."</em>
+      </p>
+      <p style="font-size: 0.95rem; line-height: 1.75; color: #3a3a3a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">
+        We build one job at a time. Richard is on every site. We use materials that hold up through West Michigan winters without warping, cracking, or looking tired in three years.
+      </p>
+      <p style="font-size: 0.95rem; line-height: 1.75; color: #3a3a3a; font-family: 'DM Sans', sans-serif;">
+        We're not for everyone. But if you want it done right, we're the right call.
+      </p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      {[
+        { label: "Licensed & Insured", detail: "Michigan contractor license — you're protected." },
+        { label: "Serving West Michigan", detail: "Grand Rapids + within 80 miles. We know these winters." },
+        { label: "Real Quote, No Games", detail: "Your estimate includes everything. No surprise invoices." },
+        { label: "Richard on Every Job", detail: "Not a project manager. The owner. On site." }
+      ].map(t => (
+        <div style="display: flex; gap: 1rem; align-items: flex-start; background: white; padding: 1rem; border-radius: 8px;">
+          <div style="width: 2rem; height: 2rem; border-radius: 50%; background: #1E3A2F; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+            <svg width="12" height="12" fill="white" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <p style="font-weight: 600; font-size: 0.875rem; color: #1E3A2F; margin-bottom: 0.2rem; font-family: 'DM Sans', sans-serif;">{t.label}</p>
+            <p style="font-size: 0.85rem; color: #5a5a5a; font-family: 'DM Sans', sans-serif;">{t.detail}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz" style="background: #F8F4ED; padding: 6rem 1.5rem;">
+  <div style="max-width: 38rem; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <p style="color: #C4873A; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; margin-bottom: 0.75rem;">Free Design Quote</p>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.75rem); color: #1E3A2F; line-height: 1.2; margin-bottom: 0.75rem;">
+        Tell us about<br /><em>your project</em>
+      </h2>
+      <p style="color: #5a5a5a; font-family: 'DM Sans', sans-serif; font-size: 0.95rem;">2 minutes. No commitment. Richard reaches out within 24 hours.</p>
+    </div>
+
+    <div style="background: white; border-radius: 12px; padding: 2.5rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); border: 1px solid #EDE7D9;">
+      <!-- Progress -->
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;">
+        <div class="progress-bar" style="flex: 1;">
+          <div class="progress-fill" id="quiz-progress" style="width: 20%;"></div>
+        </div>
+        <span id="quiz-step-label" style="font-size: 0.8rem; font-weight: 500; color: #C4873A; font-family: 'DM Sans', sans-serif; white-space: nowrap;">Step 1 of 5</span>
+      </div>
+
+      <form id="quiz-form">
+
+        <!-- Step 1 -->
+        <div class="quiz-step active" data-step="1">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 1.5rem;">What are you looking to build?</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+            {["A new deck", "A pergola or shade structure", "Stairs or railings", "Full outdoor living space (deck + extras)", "Not sure yet — I need help planning"].map(opt => (
+              <div class="quiz-option" data-step="1" data-value={opt}>
+                <div style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+            <button type="button" class="btn-primary quiz-next" data-next="2">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="quiz-step" data-step="2">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 1.5rem;">When do you want it done?</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+            {["As soon as possible", "Spring / early summer 2025", "Summer 2025", "Fall 2025 or later", "Still planning — no rush"].map(opt => (
+              <div class="quiz-option" data-step="2" data-value={opt}>
+                <div style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="1" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="3">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="quiz-step" data-step="3">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.5rem;">What's your approximate budget?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.25rem; font-family: 'DM Sans', sans-serif;">This helps us design something that actually works for you.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+            {["Under $15,000", "$15,000 – $25,000", "$25,000 – $40,000", "$40,000+", "I'm not sure yet"].map(opt => (
+              <div class="quiz-option" data-step="3" data-value={opt}>
+                <div style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="2" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="4">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="quiz-step" data-step="4">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 1.5rem;">Where's the property located?</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+            {["Grand Rapids", "Muskegon / Lakeshore", "Holland / Zeeland", "Kalamazoo area", "Other (within 80 miles of GR)"].map(opt => (
+              <div class="quiz-option" data-step="4" data-value={opt}>
+                <div style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #D6E2D9; flex-shrink: 0; transition: all 0.2s;"></div>
+                <span style="font-size: 0.9rem; font-weight: 500; color: #1A1A1A; font-family: 'DM Sans', sans-serif;">{opt}</span>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="3" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="button" class="btn-primary quiz-next" data-next="5">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="quiz-step" data-step="5">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1E3A2F; margin-bottom: 0.5rem;">Last step — where do we send the quote?</h3>
+          <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 1.5rem; font-family: 'DM Sans', sans-serif;">Richard personally follows up within 24 hours. No spam, no sales games.</p>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Your Name *</label>
+              <input type="text" name="name" required placeholder="First and last name"
+                style="width: 100%; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; outline: none; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Phone Number *</label>
+              <input type="tel" name="phone" required placeholder="(616) 555-0100"
+                style="width: 100%; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; outline: none; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Email Address *</label>
+              <input type="email" name="email" required placeholder="you@example.com"
+                style="width: 100%; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; outline: none; font-family: 'DM Sans', sans-serif; color: #1A1A1A; box-sizing: border-box;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 500; color: #1A1A1A; margin-bottom: 0.4rem; font-family: 'DM Sans', sans-serif;">Tell us about your project <span style="color: #9a9a9a; font-weight: 400;">(optional)</span></label>
+              <textarea name="details" rows="3" placeholder="Size, features, questions, anything helps…"
+                style="width: 100%; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.9rem; border: 1.5px solid #D6E2D9; outline: none; font-family: 'DM Sans', sans-serif; color: #1A1A1A; resize: none; box-sizing: border-box;"></textarea>
+            </div>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="quiz-back" data-back="4" style="font-size: 0.875rem; font-weight: 500; color: #5a5a5a; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;">← Back</button>
+            <button type="submit" class="btn-primary">Send My Project Details →</button>
+          </div>
+          <p style="font-size: 0.75rem; color: #9a9a9a; text-align: center; margin-top: 1rem; font-family: 'DM Sans', sans-serif;">We never share your info. No spam.</p>
+        </div>
+
+        <!-- Success -->
+        <div class="quiz-step" data-step="success" style="text-align: center; padding: 2rem 0;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: #EAF0EA; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <svg width="28" height="28" fill="none" stroke="#1E3A2F" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.75rem; color: #1E3A2F; margin-bottom: 0.75rem;">We got it. Talk soon.</h3>
+          <p style="font-size: 0.95rem; line-height: 1.7; color: #5a5a5a; max-width: 22rem; margin: 0 auto; font-family: 'DM Sans', sans-serif;">
+            Richard will reach out within 24 hours to set up a free walkthrough. Check your inbox — and take one more look at your backyard while you're dreaming.
+          </p>
+        </div>
+
+      </form>
+    </div>
+
+    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: #9a9a9a; font-family: 'DM Sans', sans-serif;">
+      <strong style="color: #5a5a5a;">PS —</strong> If you want the cheapest bid in West Michigan, we're probably not it. But if you want a deck your neighbors stop to ask about — fill out the form.
+    </p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background: #142819; padding: 5rem 1.5rem 3rem;">
+  <div style="max-width: 72rem; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+      <div>
+        <h3 style="color: white; font-family: 'Playfair Display', serif; font-size: 1.25rem; margin-bottom: 0.75rem;">Grandson's Construction</h3>
+        <p style="color: rgba(255,255,255,0.45); font-size: 0.875rem; line-height: 1.7; font-family: 'DM Sans', sans-serif;">
+          Custom decks, pergolas & outdoor living — built right the first time. Grand Rapids & West Michigan.
+        </p>
+      </div>
+      <div>
+        <h4 style="color: white; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; font-family: 'DM Sans', sans-serif;">Services</h4>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+          {["Custom Decks", "Stairs & Railings", "Pergolas & Shade", "Outdoor Living Spaces"].map(s => (
+            <li style="color: rgba(255,255,255,0.45); font-size: 0.875rem; font-family: 'DM Sans', sans-serif;">{s}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: white; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; font-family: 'DM Sans', sans-serif;">Contact</h4>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li><a href="tel:+16165550100" style="color: rgba(255,255,255,0.45); font-size: 0.875rem; text-decoration: none; font-family: 'DM Sans', sans-serif;">(616) 555-0100</a></li>
+          <li><a href="mailto:richard@grandsonsconstruction.com" style="color: rgba(255,255,255,0.45); font-size: 0.875rem; text-decoration: none; font-family: 'DM Sans', sans-serif;">richard@grandsonsconstruction.com</a></li>
+          <li style="color: rgba(255,255,255,0.45); font-size: 0.875rem; font-family: 'DM Sans', sans-serif;">Grand Rapids, MI + 80-mile radius</li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+      <p style="color: rgba(255,255,255,0.25); font-size: 0.75rem; font-family: 'DM Sans', sans-serif;">© 2025 Grandson's Construction. Licensed & Insured in Michigan.</p>
+      <a href="#quiz" style="color: #D9A55C; font-size: 0.8rem; font-weight: 500; text-decoration: none; font-family: 'DM Sans', sans-serif;">Get a Free Quote →</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      navbar!.style.background = '#1E3A2F';
+      navbar!.style.boxShadow = '0 2px 20px rgba(0,0,0,0.25)';
+    } else {
+      navbar!.style.background = 'transparent';
+      navbar!.style.boxShadow = 'none';
+    }
+  });
+
+  // Mobile menu
+  const mobileMenu = document.getElementById('mobile-menu')!;
+  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+    mobileMenu.style.display = 'flex';
+    mobileMenu.style.flexDirection = 'column';
+    mobileMenu.style.alignItems = 'center';
+    mobileMenu.style.justifyContent = 'center';
+  });
+  document.getElementById('mobile-close')?.addEventListener('click', () => {
+    mobileMenu.style.display = 'none';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => { mobileMenu.style.display = 'none'; });
+  });
+
+  // Quiz
+  const answers: Record<string, string> = {};
+
+  function showStep(n: number | string) {
+    document.querySelectorAll('.quiz-step').forEach(el => el.classList.remove('active'));
+    const target = document.querySelector(`[data-step="${n}"]`) as HTMLElement;
+    if (target) target.classList.add('active');
+
+    if (typeof n === 'number' && n <= 5) {
+      const pct = (n / 5) * 100;
+      (document.getElementById('quiz-progress') as HTMLElement).style.width = `${pct}%`;
+      (document.getElementById('quiz-step-label') as HTMLElement).textContent = `Step ${n} of 5`;
+    } else if (n === 'success') {
+      (document.getElementById('quiz-progress') as HTMLElement).style.width = '100%';
+      (document.getElementById('quiz-step-label') as HTMLElement).textContent = 'Done!';
+    }
+  }
+
+  document.querySelectorAll('.quiz-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const step = opt.getAttribute('data-step')!;
+      document.querySelectorAll(`.quiz-option[data-step="${step}"]`).forEach(o => {
+        o.classList.remove('selected');
+        const dot = o.querySelector('div') as HTMLElement;
+        dot.style.borderColor = '#D6E2D9';
+        dot.style.background = 'transparent';
+      });
+      opt.classList.add('selected');
+      const dot = opt.querySelector('div') as HTMLElement;
+      dot.style.borderColor = '#1E3A2F';
+      dot.style.background = '#1E3A2F';
+      answers[`step${step}`] = opt.getAttribute('data-value') || '';
+    });
+  });
+
+  document.querySelectorAll('.quiz-next').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showStep(parseInt(btn.getAttribute('data-next') || '1'));
+    });
+  });
+
+  document.querySelectorAll('.quiz-back').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showStep(parseInt(btn.getAttribute('data-back') || '1'));
+    });
+  });
+
+  document.getElementById('quiz-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const submission = {
+      ...answers,
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      details: (form.elements.namedItem('details') as HTMLTextAreaElement).value,
+    };
+    console.log('Grandson\'s Construction — Lead:', submission);
+    showStep('success');
+  });
+</script>
+
+</Layout>

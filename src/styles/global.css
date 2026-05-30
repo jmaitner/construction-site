@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@theme {
+  --color-forest: #1E3A2F;
+  --color-forest-dark: #142819;
+  --color-forest-light: #2D5441;
+  --color-cream: #F8F4ED;
+  --color-cream-dark: #EDE7D9;
+  --color-amber: #C4873A;
+  --color-amber-light: #D9A55C;
+  --color-charcoal: #1A1A1A;
+  --color-sage: #EAF0EA;
+  --color-mist: #D6E2D9;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-amber);
+  color: white;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  transition: background-color 0.2s, transform 0.15s;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-amber-light);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-block;
+  border: 2px solid white;
+  color: white;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.9rem 2rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255,255,255,0.15);
+}
+
+.quiz-step {
+  display: none;
+}
+.quiz-step.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.quiz-option {
+  cursor: pointer;
+  border: 2px solid #D6E2D9;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  transition: border-color 0.2s, background-color 0.2s;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.quiz-option:hover {
+  border-color: #C4873A;
+}
+.quiz-option.selected {
+  border-color: #1E3A2F;
+  background-color: #EAF0EA;
+}
+
+.progress-bar {
+  height: 3px;
+  background: #D6E2D9;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: #C4873A;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
