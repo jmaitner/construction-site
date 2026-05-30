@@ -62,7 +62,7 @@ async function generateQuote(context, env) {
     },
     body: JSON.stringify({
       model: 'claude-opus-4-7',
-      max_tokens: 1500,
+      max_tokens: 4000,
       system: `You are a quoting assistant for Grandson's Construction, a premium deck and outdoor living contractor in West Michigan. Analyze project intake forms and produce structured preliminary estimates.
 
 Pricing guidelines:
@@ -104,7 +104,26 @@ Return ONLY valid JSON, no markdown fences.`,
   });
   if (!resp.ok) throw new Error(`Anthropic ${resp.status}: ${await resp.text()}`);
   const data = await resp.json();
-  return JSON.parse(data.content[0].text.trim());
+  if (data.stop_reason === 'max_tokens') {
+    console.error('Claude hit max_tokens — response truncated. Consider raising the limit.');
+  }
+  return parseQuoteJson(data.content[0].text);
+}
+
+// Robustly parse Claude's JSON: strips markdown fences and any prose before/after
+// the JSON object, so a stray sentence or code fence doesn't sink the whole quote.
+function parseQuoteJson(raw) {
+  let text = (raw || '').trim();
+  // Strip ```json ... ``` or ``` ... ``` fences if present
+  const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fence) text = fence[1].trim();
+  // Otherwise slice from first { to last } to drop any surrounding prose
+  if (text[0] !== '{') {
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    if (start !== -1 && end > start) text = text.slice(start, end + 1);
+  }
+  return JSON.parse(text);
 }
 
 async function appendToSheets(body, quote, env) {
