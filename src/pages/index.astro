@@ -5,9 +5,9 @@ import Layout from '../layouts/Layout.astro';
 
 <!-- NAV -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-12 flex items-center justify-between" style="background: transparent;">
-  <div class="text-white text-xl font-semibold leading-tight" style="font-family: 'Playfair Display', serif;">
-    Grandson's<br /><span style="color: #D9A55C; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'DM Sans', sans-serif;">Construction</span>
-  </div>
+  <a href="#" style="display: flex; align-items: center;">
+    <img src="/logo.svg" alt="Grandsons Construction" id="nav-logo" style="height: 36px; width: auto; filter: brightness(0) invert(1); transition: filter 0.3s;" />
+  </a>
   <div class="hidden md:flex items-center gap-8">
     <a href="#services" class="text-white/80 hover:text-white text-sm font-medium transition-colors" style="font-family: 'DM Sans', sans-serif;">Services</a>
     <a href="#process" class="text-white/80 hover:text-white text-sm font-medium transition-colors" style="font-family: 'DM Sans', sans-serif;">Our Process</a>
@@ -21,6 +21,7 @@ import Layout from '../layouts/Layout.astro';
 
 <!-- Mobile menu -->
 <div id="mobile-menu" class="fixed inset-0 z-40 flex-col items-center justify-center gap-8 text-center" style="background: #1E3A2F; display: none;">
+  <img src="/logo.svg" alt="Grandsons Construction" style="height: 32px; width: auto; filter: brightness(0) invert(1); margin-bottom: 1rem;" />
   <button id="mobile-close" class="absolute top-6 right-6 text-white">
     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
   </button>
@@ -452,7 +453,7 @@ import Layout from '../layouts/Layout.astro';
         <h4 style="color: white; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; font-family: 'DM Sans', sans-serif;">Contact</h4>
         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
           <li><a href="tel:+16165550100" style="color: rgba(255,255,255,0.45); font-size: 0.875rem; text-decoration: none; font-family: 'DM Sans', sans-serif;">(616) 555-0100</a></li>
-          <li><a href="mailto:richard@grandsonsconstruction.com" style="color: rgba(255,255,255,0.45); font-size: 0.875rem; text-decoration: none; font-family: 'DM Sans', sans-serif;">richard@grandsonsconstruction.com</a></li>
+          <li><a href="mailto:grandsonsconstructionllc@gmail.com" style="color: rgba(255,255,255,0.45); font-size: 0.875rem; text-decoration: none; font-family: 'DM Sans', sans-serif;">grandsonsconstructionllc@gmail.com</a></li>
           <li style="color: rgba(255,255,255,0.45); font-size: 0.875rem; font-family: 'DM Sans', sans-serif;">Grand Rapids, MI + 80-mile radius</li>
         </ul>
       </div>
@@ -468,10 +469,12 @@ import Layout from '../layouts/Layout.astro';
 <script>
   // Navbar scroll
   const navbar = document.getElementById('navbar');
+  const navLogo = document.getElementById('nav-logo') as HTMLImageElement | null;
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
       navbar!.style.background = '#1E3A2F';
       navbar!.style.boxShadow = '0 2px 20px rgba(0,0,0,0.25)';
+      // keep logo white on dark green nav
     } else {
       navbar!.style.background = 'transparent';
       navbar!.style.boxShadow = 'none';

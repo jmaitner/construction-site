@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410 85" fill="none">
+  <!-- Saw blade outer teeth -->
+  <polygon fill="#3a3a3a" points="45.0,15.0 50.5,3.4 52.8,16.0 61.1,6.2 60.0,19.0 70.6,11.7 66.2,23.8 78.3,19.4 71.0,30.0 83.8,28.9 74.0,37.2 86.6,39.5 75.0,45.0 86.6,50.5 74.0,52.8 83.8,61.1 71.0,60.0 78.3,70.6 66.2,66.2 70.6,78.3 60.0,71.0 61.1,83.8 52.8,74.0 50.5,86.6 45.0,75.0 39.5,86.6 37.2,74.0 28.9,83.8 30.0,71.0 19.4,78.3 23.8,66.2 11.7,70.6 19.0,60.0 6.2,61.1 16.0,52.8 3.4,50.5 15.0,45.0 3.4,39.5 16.0,37.2 6.2,28.9 19.0,30.0 11.7,19.4 23.8,23.8 19.4,11.7 30.0,19.0 28.9,6.2 37.2,16.0 39.5,3.4"/>
+  <circle cx="45" cy="45" r="27" fill="#555555"/>
+  <text x="45" y="54" font-family="'Arial Black','Impact',sans-serif" font-size="30" font-weight="900" fill="white" text-anchor="middle">G</text>
+  <circle cx="45" cy="45" r="4" fill="#888"/>
+
+  <!-- GRANDSONS: x=100 to x=405, textLength forces exact width -->
+  <text x="100" y="50" font-family="'Arial Black','Impact',sans-serif" font-size="40" font-weight="900" font-style="italic" fill="#111" textLength="305" lengthAdjust="spacingAndGlyphs">GRANDSONS</text>
+
+  <!-- CONSTRUCTION centered at x=252 (midpoint of 100..405) -->
+  <!-- Left dash: 100 to 158 -->
+  <line x1="100" y1="64" x2="148" y2="64" stroke="#666" stroke-width="1.5"/>
+  <!-- CONSTRUCTION text: center x=252, letter-spacing=3 -->
+  <text x="252" y="69" font-family="Arial,sans-serif" font-size="11.5" fill="#666" text-anchor="middle" letter-spacing="4" textLength="160" lengthAdjust="spacing">CONSTRUCTION</text>
+  <!-- Right dash: 356 to 405 -->
+  <line x1="356" y1="64" x2="405" y2="64" stroke="#666" stroke-width="1.5"/>
+</svg>
